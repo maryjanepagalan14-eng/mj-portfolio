@@ -236,6 +236,45 @@
   .mjfoot-links a:hover{color:#D98A78;}
   .mjfoot-dot{margin:0 10px; color:var(--tuscan);}
   .mjfoot-copy{text-align:center; font-size:11px; letter-spacing:0.08em; color:var(--portabella);}
+
+  /* ===== INTERACTIVITY: scroll reveal, hover lift, nav shrink, parallax, page transitions ===== */
+  .mjnav{transition:box-shadow 0.3s ease;}
+  .mjnav.scrolled{box-shadow:0 10px 30px -14px rgba(0,0,0,0.6);}
+  .mjnav-cta:hover{transform:translateY(-2px);}
+
+  .mjabt-mark{transition:transform 0.1s linear;}
+
+  .mjabt-pill:hover, .mjabt-btn-primary:hover, .mjabt-btn-outline:hover{transform:translateY(-3px);}
+
+  .mjabout-photo{overflow:hidden;}
+  .mjabout-photo img{transition:transform 0.6s cubic-bezier(.16,.84,.44,1);}
+  .mjabout-photo:hover img{transform:scale(1.06);}
+
+  .mjspec-card, .mjproj-card, .mjws-card, .mjtool-card, .mjrev-card, .mjtease-card, .mjpr-step, .mjdet-cell, .mjcontact-card{
+    transition:transform 0.4s cubic-bezier(.16,.84,.44,1), box-shadow 0.4s ease;
+  }
+  .mjspec-card:hover, .mjproj-card:hover, .mjws-card:hover, .mjtool-card:hover, .mjrev-card:hover, .mjtease-card:hover, .mjpr-step:hover, .mjdet-cell:hover, .mjcontact-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 40px -18px rgba(102,25,40,0.55);
+  }
+
+  .mjws-card .placeholder-x, .mjproj-thumb .placeholder-x{transition:transform 0.5s ease;}
+  .mjws-card:hover .placeholder-x, .mjproj-thumb:hover .placeholder-x{transform:scale(1.08);}
+
+  .mjspec-card, .mjproj-card, .mjws-card, .mjtool-card, .mjrev-card, .mjtease-card, .mjpr-step, .mjdet-cell, .mjabout-photo, .mjabout-bio, .mjabout-help, .mjabout-stat{
+    opacity:0; transform:translateY(28px);
+    transition:opacity 0.7s cubic-bezier(.16,.84,.44,1), transform 0.7s cubic-bezier(.16,.84,.44,1), box-shadow 0.4s ease;
+  }
+  .mjspec-card.in-view, .mjproj-card.in-view, .mjws-card.in-view, .mjtool-card.in-view, .mjrev-card.in-view, .mjtease-card.in-view, .mjpr-step.in-view, .mjdet-cell.in-view, .mjabout-photo.in-view, .mjabout-bio.in-view, .mjabout-help.in-view, .mjabout-stat.in-view{
+    opacity:1; transform:translateY(0);
+  }
+
+  .mjpage.active{ animation:mjPageIn 0.5s cubic-bezier(.16,.84,.44,1); }
+  @keyframes mjPageIn{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; animation:none !important;}
+  }
 </style>
 </head>
 <body>
@@ -866,10 +905,15 @@
 </footer>
 
 <script>
+  var revealSelector = '.mjspec-card, .mjproj-card, .mjws-card, .mjtool-card, .mjrev-card, .mjtease-card, .mjpr-step, .mjdet-cell, .mjabout-photo, .mjabout-bio, .mjabout-help, .mjabout-stat';
+
   function showPage(id){
     document.querySelectorAll('.mjpage').forEach(function(p){ p.classList.remove('active'); });
     var target = document.getElementById('page-' + id);
-    if(target){ target.classList.add('active'); }
+    if(target){
+      target.classList.add('active');
+      target.querySelectorAll(revealSelector).forEach(function(el){ el.classList.add('in-view'); });
+    }
     document.querySelectorAll('.mjnav-link').forEach(function(b){
       b.classList.toggle('active', b.getAttribute('data-page') === id);
     });
@@ -880,6 +924,28 @@
     document.getElementById('navLinks').classList.toggle('open');
   }
   document.querySelector('.mjnav-link[data-page="home"]').classList.add('active');
+
+  var revealTargets = document.querySelectorAll(revealSelector);
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    revealTargets.forEach(function(el){ io.observe(el); });
+  } else {
+    revealTargets.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  var navEl = document.querySelector('.mjnav');
+  var markEl = document.querySelector('.mjabt-mark');
+  window.addEventListener('scroll', function(){
+    if(navEl){ navEl.classList.toggle('scrolled', window.scrollY > 20); }
+    if(markEl){ markEl.style.transform = 'translate(-50%, ' + (window.scrollY * 0.12) + 'px)'; }
+  }, {passive:true});
 </script>
 
 </body>

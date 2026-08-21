@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MJ — Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#E9D7C9; --portabella:#998275; --tuscan:#7D4B47;
+    --pohutukawa:#661928; --breakup:#360604; --nuln:#130F0D;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--nuln); font-family:'Inter',sans-serif; color:var(--cream); -webkit-font-smoothing:antialiased;}
+  a{text-decoration:none;}
+  button{font-family:inherit; cursor:pointer;}
+
+  /* ===== NAV ===== */
+  .mjnav{position:sticky; top:0; z-index:100; background:rgba(19,15,13,0.92); backdrop-filter:blur(8px); border-bottom:1px solid rgba(233,215,201,0.14);}
+  .mjnav-inner{max-width:1220px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 32px;}
+  .mjnav-logo{background:none; border:0; font-family:'Playfair Display',serif; font-weight:700; font-size:22px; color:var(--cream); letter-spacing:0.02em; padding:0;}
+  .mjnav-logo .dot{color:var(--tuscan);}
+  .mjnav-toggle{display:none; background:none; border:1px solid rgba(233,215,201,0.3); color:var(--cream); font-size:16px; padding:8px 12px;}
+  .mjnav-links{display:flex; align-items:center; gap:2px;}
+  .mjnav-link{background:none; border:0; color:var(--portabella); font-size:11.5px; font-weight:500; letter-spacing:0.02em; padding:9px 10px; transition:color 0.2s; white-space:nowrap;}
+  .mjnav-link:hover{color:var(--cream);}
+  .mjnav-link.active{color:var(--cream); position:relative;}
+  .mjnav-link.active::after{content:''; position:absolute; left:10px; right:10px; bottom:2px; height:2px; background:var(--tuscan);}
+  .mjnav-cta{margin-left:10px; background:var(--tuscan); color:var(--cream); font-size:11px; font-weight:600; letter-spacing:0.06em; padding:11px 18px; border:1px solid var(--tuscan); white-space:nowrap;}
+  @media(max-width:1000px){
+    .mjnav-toggle{display:block;}
+    .mjnav-links{position:absolute; top:100%; left:0; right:0; background:var(--nuln); border-bottom:1px solid rgba(233,215,201,0.14); flex-direction:column; align-items:stretch; padding:10px 20px 20px; gap:2px; display:none;}
+    .mjnav-links.open{display:flex;}
+    .mjnav-link{text-align:left; padding:13px 8px; border-bottom:1px solid rgba(233,215,201,0.08);}
+    .mjnav-cta{margin:10px 8px 0; text-align:center;}
+  }
+
+  /* ===== PAGE SWITCHING ===== */
+  .mjpage{display:none;}
+  .mjpage.active{display:block;}
+
+  /* ===== SHARED ===== */
+  .sec{padding:90px 40px 100px;}
+  .sec.tight{padding:70px 40px;}
+  .max{max-width:1040px; margin:0 auto;}
+  .sec-head{display:flex; align-items:baseline; gap:18px; margin-bottom:50px;}
+  .sec-num{font-size:11px; font-weight:600; color:var(--tuscan); letter-spacing:0.1em;}
+  .sec-head h2{font-family:'Playfair Display',serif; font-weight:600; font-size:32px; color:var(--cream);}
+  .sec-line{flex:1; height:1px; background:rgba(233,215,201,0.15);}
+  .eyebrow{font-size:11px; font-weight:600; letter-spacing:0.28em; text-transform:uppercase; color:var(--tuscan); margin-bottom:16px;}
+
+  /* ===== SOCIAL ICONS (shared: hero + footer + contact) ===== */
+  .mjsocial-label{font-size:10px; font-weight:600; letter-spacing:0.24em; text-transform:uppercase; color:var(--tuscan); margin:34px 0 14px; text-align:center;}
+  .mjsocial-row{display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;}
+  .mjsocial-icon{width:38px; height:38px; border-radius:50%; border:1px solid rgba(233,215,201,0.35); display:flex; align-items:center; justify-content:center; color:var(--cream); font-size:12px; font-weight:700; letter-spacing:0.02em; background:rgba(125,75,71,0.12); transition:background 0.2s, border-color 0.2s, transform 0.2s;}
+  .mjsocial-icon:hover{background:var(--tuscan); border-color:var(--tuscan); transform:translateY(-2px);}
+  .mjsocial-icon.lg{width:52px; height:52px; font-size:14px;}
+
+  /* ===== HOME HERO ===== */
+  .mjabt-hero{position:relative; overflow:hidden; padding:110px 40px 90px; text-align:center; border-bottom:1px solid rgba(233,215,201,0.14);}
+  .mjabt-mark{position:absolute; top:2%; left:50%; transform:translateX(-50%); font-family:'Playfair Display',serif; font-weight:700; font-size:min(48vw,460px); line-height:1; letter-spacing:-0.03em; color:var(--pohutukawa); opacity:0.14; user-select:none; pointer-events:none;}
+  .mjabt-eyebrow{position:relative; font-size:11px; font-weight:600; letter-spacing:0.32em; text-transform:uppercase; color:var(--tuscan); margin-bottom:26px;}
+  .mjabt-name{position:relative; font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(44px,8vw,96px); letter-spacing:0.01em; color:var(--cream); line-height:1;}
+  .mjabt-name .dot{color:var(--tuscan);}
+  .mjabt-tagline{position:relative; font-family:'Playfair Display',serif; font-style:italic; font-weight:400; font-size:clamp(17px,2.2vw,24px); color:#D98A78; margin-top:22px;}
+  .mjabt-rule{position:relative; width:60px; height:2px; background:var(--tuscan); margin:28px auto 0;}
+  .mjabt-position{position:relative; max-width:520px; margin:24px auto 0; font-size:14px; line-height:1.85; color:var(--portabella);}
+  .mjabt-btns{position:relative; display:flex; justify-content:center; gap:14px; margin-top:30px; flex-wrap:wrap;}
+  .mjabt-btn-primary{background:var(--tuscan); color:var(--cream); padding:14px 30px; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; border:1px solid var(--tuscan); display:inline-block;}
+  .mjabt-btn-primary:hover{background:var(--pohutukawa); border-color:var(--pohutukawa);}
+  .mjabt-btn-outline{background:none; color:var(--cream); padding:14px 30px; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; border:1px solid rgba(233,215,201,0.4); display:inline-block;}
+  .mjabt-btn-outline:hover{background:rgba(233,215,201,0.08); border-color:var(--cream);}
+  .mjabt-badge{position:relative; display:inline-flex; align-items:center; gap:10px; margin-top:34px; padding:9px 20px; border:1px solid rgba(233,215,201,0.35); border-radius:999px; font-size:10.5px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--cream);}
+  .mjabt-badge::before{content:''; width:6px; height:6px; border-radius:50%; background:var(--tuscan); flex-shrink:0;}
+  .mjabt-pills{position:relative; display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:32px; max-width:680px; margin-left:auto; margin-right:auto;}
+  .mjabt-pill{padding:11px 22px; border:1px solid rgba(153,130,117,0.5); color:var(--cream); font-size:12px; font-weight:500; letter-spacing:0.03em; background:rgba(125,75,71,0.12);}
+  .mjabt-pill:hover{background:rgba(125,75,71,0.28); border-color:var(--tuscan);}
+  @media(max-width:600px){.mjabt-hero{padding:70px 24px 60px;}}
+
+  /* ===== ABOUT ME (home) ===== */
+  .mjabout-wrap{background:var(--nuln); padding:90px 40px 100px;}
+  .mjabout-top{display:flex; gap:44px; align-items:flex-start; flex-wrap:wrap; max-width:1040px; margin:0 auto 50px;}
+  .mjabout-photo{flex:0 0 220px; width:220px; aspect-ratio:4/5; position:relative; overflow:hidden; border:1px solid rgba(233,215,201,0.25); background:var(--breakup);}
+  .mjabout-photo img{width:100%; height:100%; object-fit:cover; filter:grayscale(100%) contrast(1.05); display:block;}
+  .mjabout-photo .tint{position:absolute; inset:0; background:var(--tuscan); mix-blend-mode:color; opacity:0.55; pointer-events:none;}
+  .mjabout-photo .placeholder-x{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px; font-family:'Playfair Display',serif; font-style:italic; font-size:13px; color:var(--portabella); opacity:0.6;}
+  .mjabout-bio{flex:1; min-width:280px;}
+  .mjabout-bio h2{font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(28px,4vw,40px); color:var(--cream); margin-bottom:20px; line-height:1.15;}
+  .mjabout-bio p{font-size:14px; line-height:1.9; color:var(--portabella); margin-bottom:18px;}
+  .mjabout-help{background:var(--breakup); border:1px solid rgba(233,215,201,0.15); padding:34px 30px; max-width:1040px; margin:0 auto 70px;}
+  .mjabout-help h3{font-family:'Playfair Display',serif; font-style:italic; font-weight:600; font-size:18px; color:#D98A78; margin-bottom:18px;}
+  .mjabout-help ul{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:14px 40px;}
+  .mjabout-help li{font-size:13px; line-height:1.8; color:var(--cream); padding-left:18px; position:relative;}
+  .mjabout-help li::before{content:'—'; position:absolute; left:0; color:var(--tuscan);}
+  .mjabout-stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(233,215,201,0.15); border:1px solid rgba(233,215,201,0.15); max-width:1040px; margin:0 auto;}
+  .mjabout-stat{background:var(--breakup); padding:28px 20px; text-align:center;}
+  .mjabout-stat .num{font-family:'Playfair Display',serif; font-weight:700; font-size:32px; color:#D98A78; margin-bottom:6px;}
+  .mjabout-stat .label{font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--portabella);}
+  @media(max-width:800px){
+    .mjabout-top{flex-direction:column; align-items:center; text-align:center;}
+    .mjabout-help ul{grid-template-columns:1fr;}
+    .mjabout-stats{grid-template-columns:1fr 1fr;}
+  }
+
+  /* ===== SPECIALIZATION OVERVIEW CARDS (home) ===== */
+  .mjspec-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(233,215,201,0.15); border:1px solid rgba(233,215,201,0.15);}
+  .mjspec-card{background:var(--breakup); padding:32px 26px; display:flex; flex-direction:column; justify-content:space-between; min-height:220px;}
+  .mjspec-card h3{font-family:'Playfair Display',serif; font-weight:600; font-size:19px; color:var(--cream); margin-bottom:12px; line-height:1.25;}
+  .mjspec-card p{font-size:12.5px; line-height:1.7; color:var(--portabella); margin-bottom:20px;}
+  .mjspec-link{background:none; border:0; color:#D98A78; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:0; align-self:flex-start;}
+  .mjspec-link:hover{color:var(--cream);}
+  @media(max-width:800px){.mjspec-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:480px){.mjspec-grid{grid-template-columns:1fr;}}
+
+  /* ===== TESTIMONIAL TEASER (home) ===== */
+  .mjtease-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(233,215,201,0.15); border:1px solid rgba(233,215,201,0.15); margin-bottom:36px;}
+  .mjtease-card{background:var(--breakup); padding:32px 30px;}
+  .mjtease-quote{font-family:'Playfair Display',serif; font-style:italic; font-size:15px; line-height:1.7; color:var(--cream); margin-bottom:16px;}
+  .mjtease-name{font-size:12px; font-weight:600; color:#D98A78;}
+  .mjtease-role{font-size:11px; color:var(--portabella); margin-top:2px;}
+  .mjtease-more{text-align:center;}
+  .mjtease-more button{background:none; border:1px solid rgba(233,215,201,0.35); color:var(--cream); font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:13px 28px;}
+  .mjtease-more button:hover{background:rgba(125,75,71,0.18); border-color:var(--tuscan);}
+  @media(max-width:700px){.mjtease-grid{grid-template-columns:1fr;}}
+
+  /* ===== MY WORKS (home preview cards) ===== */
+  .mjproj-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .mjproj-card{background:var(--nuln); border:1px solid rgba(233,215,201,0.18);}
+  .mjproj-thumb{position:relative; aspect-ratio:4/3; background:var(--breakup); display:flex; align-items:center; justify-content:center;}
+  .mjproj-num{position:absolute; top:14px; left:14px; background:var(--tuscan); color:var(--cream); font-size:11px; font-weight:700; padding:5px 10px;}
+  .mjproj-thumb .placeholder-x{font-family:'Playfair Display',serif; font-style:italic; font-size:13px; color:var(--portabella); opacity:0.5;}
+  .mjproj-body{padding:22px 22px 26px;}
+  .mjproj-body h3{font-family:'Playfair Display',serif; font-weight:600; font-size:18px; color:var(--cream); margin-bottom:8px;}
+  .mjproj-tag{display:inline-block; font-size:9.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--tuscan); border:1px solid rgba(125,75,71,0.5); padding:4px 9px; margin-bottom:10px;}
+  .mjproj-body p{font-size:12.5px; line-height:1.7; color:var(--portabella); margin-bottom:14px;}
+  .mjproj-link{font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#D98A78; background:none; border:0; padding:0;}
+  .mjproj-link:hover{color:var(--cream);}
+  .mjproj-more{text-align:center; margin-top:36px;}
+  .mjproj-more button{background:none; border:1px solid rgba(233,215,201,0.35); color:var(--cream); font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:13px 28px;}
+  .mjproj-more button:hover{background:rgba(125,75,71,0.18); border-color:var(--tuscan);}
+  @media(max-width:800px){.mjproj-grid{grid-template-columns:1fr;}}
+
+  /* ===== PROCESS ===== */
+  .mjpr-steps{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(233,215,201,0.15); border:1px solid rgba(233,215,201,0.15);}
+  .mjpr-step{background:var(--breakup); padding:34px 26px;}
+  .mjpr-step .n{font-family:'Playfair Display',serif; font-style:italic; font-size:34px; color:var(--tuscan); margin-bottom:16px;}
+  .mjpr-step h3{font-family:'Playfair Display',serif; font-weight:600; font-size:18px; color:var(--cream); margin-bottom:10px;}
+  .mjpr-step p{font-size:12.5px; line-height:1.75; color:var(--portabella);}
+  .mjpr-cta{text-align:center; padding-top:10px; border-top:1px solid rgba(233,215,201,0.15);}
+  .mjpr-cta-eyebrow{font-size:11px; font-weight:600; letter-spacing:0.28em; text-transform:uppercase; color:var(--tuscan); margin:44px 0 16px;}
+  .mjpr-cta h2{font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(26px,4vw,42px); color:var(--cream); max-width:560px; margin:0 auto 30px;}
+  .mjpr-btn{display:inline-block; font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--cream); background:var(--tuscan); padding:16px 38px; border:1px solid var(--tuscan);}
+  @media(max-width:760px){.mjpr-steps{grid-template-columns:1fr 1fr;}}
+  @media(max-width:480px){.mjpr-steps{grid-template-columns:1fr;}}
+
+  /* ===== SKILL PAGE HERO ===== */
+  .mjhero{padding:90px 40px 80px; position:relative;}
+  .mjhero-title{font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(34px,5.4vw,58px); color:var(--cream); line-height:1.05; margin-bottom:20px; max-width:640px;}
+  .mjhero-intro{font-size:14.5px; line-height:1.9; color:var(--cream); opacity:0.82; max-width:520px; margin-bottom:26px;}
+  .mjhero-chips{display:flex; flex-wrap:wrap; gap:9px;}
+  .mjhero-chip{padding:9px 18px; border:1px solid rgba(233,215,201,0.4); border-radius:999px; font-size:11px; font-weight:500; color:var(--cream); background:rgba(19,15,13,0.18);}
+  .bg-coord{background:var(--nuln);}
+  .bg-crm{background:var(--breakup);}
+  .bg-listings{background:var(--pohutukawa);}
+  .bg-social{background:var(--tuscan);}
+
+  /* ===== SKILL PAGE DETAIL GRID ===== */
+  .mjdet-wrap{background:var(--nuln); padding:70px 40px 90px;}
+  .mjdet-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(233,215,201,0.15); border:1px solid rgba(233,215,201,0.15); margin-bottom:44px;}
+  .mjdet-cell{background:var(--breakup); padding:30px 28px; min-height:160px;}
+  .mjdet-cell h4{font-family:'Playfair Display',serif; font-weight:600; font-style:italic; font-size:16px; color:#D98A78; margin-bottom:12px;}
+  .mjdet-cell p, .mjdet-cell ul{font-size:12.5px; line-height:1.8; color:var(--portabella); margin:0; padding:0; list-style:none;}
+  .mjdet-cell li{padding-left:14px; position:relative; margin-bottom:6px;}
+  .mjdet-cell li::before{content:'—'; position:absolute; left:0; color:var(--tuscan);}
+  .mjdet-tools{border-top:1px solid rgba(233,215,201,0.15); padding-top:26px;}
+  .mjdet-tools-label{font-size:10px; font-weight:600; letter-spacing:0.24em; text-transform:uppercase; color:var(--tuscan); margin-bottom:14px;}
+  .mjdet-tools-row{display:flex; flex-wrap:wrap; gap:24px;}
+  .mjdet-tools-row span{font-family:'Playfair Display',serif; font-style:italic; font-size:14px; color:var(--cream);}
+  @media(max-width:700px){.mjdet-grid{grid-template-columns:1fr;}}
+
+  /* ===== WORK SAMPLES (per page) ===== */
+  .mjws-wrap{background:var(--nuln); padding:20px 40px 90px;}
+  .mjws-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(233,215,201,0.15); border:1px solid rgba(233,215,201,0.15);}
+  .mjws-card{background:var(--breakup); aspect-ratio:4/3; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; padding:20px;}
+  .mjws-card .tag{position:absolute; top:16px; left:16px; font-size:9.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--cream); border:1px solid rgba(233,215,201,0.4); padding:5px 10px;}
+  .mjws-card .placeholder-x{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-style:italic; font-size:13px; color:var(--portabella); opacity:0.5;}
+  .mjws-card .cap{position:relative; font-size:12.5px; color:var(--cream); font-weight:500;}
+  .mjws-card .sub{position:relative; font-size:10.5px; color:var(--portabella); margin-top:3px;}
+  .mjws-note{margin-top:26px; font-size:11.5px; color:var(--portabella); font-style:italic; font-family:'Playfair Display',serif;}
+  @media(max-width:760px){.mjws-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:480px){.mjws-grid{grid-template-columns:1fr;}}
+
+  /* ===== TOOLS PAGE ===== */
+  .mjtool-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:16px;}
+  .mjtool-card{background:var(--breakup); border:1px solid rgba(233,215,201,0.15); padding:20px 14px; display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center;}
+  .mjtool-frame{width:60px; height:60px; border:1px dashed rgba(233,215,201,0.35); background:var(--nuln); display:flex; align-items:center; justify-content:center; overflow:hidden;}
+  .mjtool-frame img{width:100%; height:100%; object-fit:contain;}
+  .mjtool-frame .placeholder-x{font-family:'Playfair Display',serif; font-style:italic; font-size:8.5px; color:var(--portabella); opacity:0.6;}
+  .mjtool-name{font-size:11.5px; font-weight:500; color:var(--cream);}
+
+  /* ===== IN-PAGE CTA STRIP ===== */
+  .mjstrip{background:var(--breakup); padding:50px 40px; text-align:center; border-top:1px solid rgba(233,215,201,0.12);}
+  .mjstrip p{font-family:'Playfair Display',serif; font-style:italic; font-size:18px; color:var(--cream); margin-bottom:20px;}
+  .mjstrip a{display:inline-block; font-size:11.5px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--cream); background:var(--tuscan); padding:14px 30px; border:1px solid var(--tuscan);}
+
+  /* ===== REVIEWS / CONTACT HERO ===== */
+  .mjrev-hero{background:var(--breakup); padding:90px 40px 70px; text-align:center;}
+  .mjrev-hero h1{font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(34px,5vw,54px); color:var(--cream); margin-bottom:16px;}
+  .mjrev-hero p{font-size:14px; color:var(--portabella); max-width:480px; margin:0 auto;}
+  .mjrev-wrap{background:var(--nuln); padding:80px 40px 100px;}
+  .mjrev-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:rgba(233,215,201,0.15); border:1px solid rgba(233,215,201,0.15);}
+  .mjrev-card{background:var(--breakup); padding:34px 28px; display:flex; flex-direction:column; justify-content:space-between; min-height:260px;}
+  .mjrev-quote{font-family:'Playfair Display',serif; font-style:italic; font-size:14.5px; line-height:1.8; color:var(--cream); margin-bottom:22px;}
+  .mjrev-foot{border-top:1px solid rgba(233,215,201,0.15); padding-top:14px;}
+  .mjrev-name{font-size:12.5px; font-weight:600; color:var(--cream);}
+  .mjrev-role{font-size:11px; color:var(--portabella); margin-top:2px;}
+  .mjrev-tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+  .mjrev-tag{display:inline-block; font-size:9.5px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--tuscan); border:1px solid rgba(125,75,71,0.5); padding:4px 9px;}
+  @media(max-width:800px){.mjrev-grid{grid-template-columns:1fr;}}
+
+  /* ===== CONTACT PAGE ===== */
+  .mjcontact-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(233,215,201,0.15); border:1px solid rgba(233,215,201,0.15); max-width:640px; margin:0 auto;}
+  .mjcontact-card{background:var(--breakup); padding:30px 24px; display:block; color:var(--cream); text-align:center; transition:background 0.2s;}
+  .mjcontact-card:hover{background:rgba(125,75,71,0.28);}
+  .mjcontact-label{font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--tuscan); margin-bottom:10px;}
+  .mjcontact-value{font-family:'Playfair Display',serif; font-size:14.5px; color:var(--cream); word-break:break-word;}
+  @media(max-width:600px){.mjcontact-grid{grid-template-columns:1fr;}}
+
+  /* ===== FOOTER / CONTACT ===== */
+  footer.mjfoot{background:var(--breakup); padding:54px 20px 30px; border-top:1px solid rgba(233,215,201,0.12);}
+  .mjfoot-inner{display:flex; flex-direction:column; align-items:center; gap:20px; margin-bottom:28px;}
+  .mjfoot-links{font-size:12.5px; color:var(--portabella); text-align:center;}
+  .mjfoot-links a{color:var(--cream); transition:color 0.2s;}
+  .mjfoot-links a:hover{color:#D98A78;}
+  .mjfoot-dot{margin:0 10px; color:var(--tuscan);}
+  .mjfoot-copy{text-align:center; font-size:11px; letter-spacing:0.08em; color:var(--portabella);}
+</style>
+</head>
+<body>
+
+<nav class="mjnav">
+  <div class="mjnav-inner">
+    <button class="mjnav-logo" onclick="showPage('home')">M<span class="dot">·</span>J</button>
+    <button class="mjnav-toggle" id="navToggle" onclick="toggleNav()">☰</button>
+    <div class="mjnav-links" id="navLinks">
+      <button class="mjnav-link" data-page="home" onclick="showPage('home')">Home</button>
+      <button class="mjnav-link" data-page="coordination" onclick="showPage('coordination')">Coordination</button>
+      <button class="mjnav-link" data-page="crm" onclick="showPage('crm')">CRM</button>
+      <button class="mjnav-link" data-page="listings" onclick="showPage('listings')">Listings</button>
+      <button class="mjnav-link" data-page="social" onclick="showPage('social')">Social</button>
+      <button class="mjnav-link" data-page="tools" onclick="showPage('tools')">Tools</button>
+      <button class="mjnav-link" data-page="portfolio" onclick="showPage('portfolio')">My Works</button>
+      <button class="mjnav-link" data-page="reviews" onclick="showPage('reviews')">Reviews</button>
+      <button class="mjnav-link" data-page="contact" onclick="showPage('contact')">Contact</button>
+      <a class="mjnav-cta" href="#" onclick="return false;">Let's Connect</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HOME ============ -->
+<section class="mjpage active" id="page-home">
+
+  <div class="mjabt-hero">
+    <div class="mjabt-mark">MJ</div>
+    <div class="mjabt-eyebrow">Virtual Assistant &nbsp;·&nbsp; Operations, Transactions &amp; Brand Support</div>
+    <h1 class="mjabt-name">Mary Jane <span class="dot">·</span> Pagalan</h1>
+    <div class="mjabt-tagline">Effortless operations. Elevated execution.</div>
+    <div class="mjabt-rule"></div>
+    <p class="mjabt-position">Five-plus years running the operational backbone of real estate and e-commerce businesses — the transactions, the databases, the listings, and the content — so the people I support stay focused on what only they can do.</p>
+    <div class="mjabt-btns">
+      <button class="mjabt-btn-primary" onclick="showPage('portfolio')">View My Work →</button>
+      <a class="mjabt-btn-outline" href="MJ-Pagalan-Resume.pdf" download>Download CV ↓</a>
+    </div>
+    <div class="mjabt-badge">Multi-Specialization Operator</div>
+    <div class="mjabt-pills">
+      <button class="mjabt-pill" onclick="showPage('coordination')">Project &amp; Transaction Coordinator</button>
+      <button class="mjabt-pill" onclick="showPage('crm')">Database &amp; CRM Management</button>
+      <button class="mjabt-pill" onclick="showPage('listings')">Listing Coordinator</button>
+      <button class="mjabt-pill" onclick="showPage('social')">Social Media Manager</button>
+    </div>
+
+    <div class="mjsocial-label">Find Me On</div>
+    <div class="mjsocial-row">
+      <a class="mjsocial-icon" href="https://www.linkedin.com/in/mary-jane-pagalan-644503246" target="_blank" rel="noopener" title="LinkedIn">in</a>
+      <a class="mjsocial-icon" href="https://www.instagram.com/im.__.ji/" target="_blank" rel="noopener" title="Instagram">IG</a>
+      <a class="mjsocial-icon" href="https://www.facebook.com/mirijane.14" target="_blank" rel="noopener" title="Facebook">f</a>
+      <a class="mjsocial-icon" href="mailto:Maryjanepagalan14@gmail.com" title="Email">@</a>
+      <a class="mjsocial-icon" href="tel:+639533470832" title="Call">☏</a>
+    </div>
+  </div>
+
+  <div class="mjabout-wrap">
+    <div class="mjabout-top">
+      <div class="mjabout-photo">
+        <!-- Replace with: <img src="mj-photo.jpg" alt="Mary Jane Pagalan"> -->
+        <div class="placeholder-x">Add Photo</div>
+      </div>
+      <div class="mjabout-bio">
+        <div class="eyebrow">About Me</div>
+        <h2>Your Real Estate Operations Partner</h2>
+        <p>I'm Mary Jane, also known as MJ. I help real estate agents and small teams run the back-office side of the business — transaction coordination, CRM management, listing coordination, and social media — so they can stay focused on clients and closings.</p>
+        <p>At Dana Blanks Real Estate, I managed multi-million-dollar transaction pipelines from contract to close, kept MLS listings and CRM records audit-ready at every stage, and ran the content system across Instagram, Facebook, and LinkedIn that kept the brand visible between deals. That hands-on real estate experience is exactly what I bring to every client — I already speak the language of contracts, disclosures, and deadlines, so there's no learning curve.</p>
+      </div>
+    </div>
+
+    <div class="mjabout-help">
+      <h3>How I Can Help</h3>
+      <ul>
+        <li>Keep every transaction moving from contract to close — without you chasing signatures</li>
+        <li>Keep your MLS listings accurate and compliant before they ever go live</li>
+        <li>Keep your CRM and client records clean, accurate, and audit-ready</li>
+        <li>Keep your content calendar running so your socials never go quiet between deals</li>
+      </ul>
+    </div>
+
+    <div class="mjabout-stats">
+      <div class="mjabout-stat"><div class="num">5+</div><div class="label">Years Experience</div></div>
+      <div class="mjabout-stat"><div class="num">100%</div><div class="label">On-Time Completion</div></div>
+      <div class="mjabout-stat"><div class="num">Zero</div><div class="label">Missed Deadlines</div></div>
+      <div class="mjabout-stat"><div class="num">6</div><div class="label">Companies Served</div></div>
+    </div>
+  </div>
+
+  <div class="sec tight">
+    <div class="max">
+      <div class="sec-head"><span class="sec-num">01</span><h2>Specializations</h2><div class="sec-line"></div></div>
+      <div class="mjspec-grid">
+        <div class="mjspec-card">
+          <div>
+            <h3>Project &amp; Transaction Coordinator</h3>
+            <p>Contract-to-close timelines, disclosures, and milestone tracking — nothing slips.</p>
+          </div>
+          <button class="mjspec-link" onclick="showPage('coordination')">View Work →</button>
+        </div>
+        <div class="mjspec-card">
+          <div>
+            <h3>Database &amp; CRM Management</h3>
+            <p>Clean, audit-ready CRM data and ledgers you can actually trust.</p>
+          </div>
+          <button class="mjspec-link" onclick="showPage('crm')">View Work →</button>
+        </div>
+        <div class="mjspec-card">
+          <div>
+            <h3>Listing Coordinator</h3>
+            <p>Accurate, compliant MLS listings — market-ready before they go live.</p>
+          </div>
+          <button class="mjspec-link" onclick="showPage('listings')">View Work →</button>
+        </div>
+        <div class="mjspec-card">
+          <div>
+            <h3>Social Media Manager</h3>
+            <p>Graphic designs, flyers, and reels, backed by a calendar that runs itself.</p>
+          </div>
+          <button class="mjspec-link" onclick="showPage('social')">View Work →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec tight">
+    <div class="max">
+      <div class="sec-head"><span class="sec-num">02</span><h2>What Clients Say</h2><div class="sec-line"></div></div>
+      <div class="mjtease-grid">
+        <div class="mjtease-card">
+          <p class="mjtease-quote">"MJ is on top of things — she really has been amazing. I'm very happy with the job she's been doing."</p>
+          <div class="mjtease-name">Devon</div>
+          <div class="mjtease-role">DBRE</div>
+        </div>
+        <div class="mjtease-card">
+          <p class="mjtease-quote">"She's doing a great job with transaction coordination. She caught on very quickly, and I am very, very pleased."</p>
+          <div class="mjtease-name">Dana</div>
+          <div class="mjtease-role">DBRE</div>
+        </div>
+      </div>
+      <div class="mjtease-more"><button onclick="showPage('reviews')">Read All Reviews</button></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="max">
+      <div class="sec-head"><span class="sec-num">03</span><h2>My Process</h2><div class="sec-line"></div></div>
+      <div class="mjpr-steps">
+        <div class="mjpr-step"><div class="n">01</div><h3>Discover</h3><p>I audit your current systems, tools, and gaps — where time is leaking and where risk is hiding.</p></div>
+        <div class="mjpr-step"><div class="n">02</div><h3>Structure</h3><p>I build the workflow, SOP, or calendar that removes the friction — documented, so it outlasts me.</p></div>
+        <div class="mjpr-step"><div class="n">03</div><h3>Execute</h3><p>I run point on the daily details — timelines, records, listings, content — quietly and on time.</p></div>
+        <div class="mjpr-step"><div class="n">04</div><h3>Report</h3><p>Clear, regular updates, so you always know exactly where things stand without having to ask.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec tight" style="background:var(--breakup);">
+    <div class="max">
+      <div class="sec-head"><span class="sec-num">04</span><h2>My Works</h2><div class="sec-line"></div></div>
+      <div class="mjproj-grid">
+        <div class="mjproj-card">
+          <div class="mjproj-thumb"><div class="mjproj-num">01</div><div class="placeholder-x">Add screenshot</div></div>
+          <div class="mjproj-body">
+            <span class="mjproj-tag">Coordination</span>
+            <h3>Contract-to-Close Tracker</h3>
+            <p>A milestone system that keeps every transaction on schedule from contract to closing.</p>
+            <button class="mjproj-link" onclick="showPage('portfolio')">View →</button>
+          </div>
+        </div>
+        <div class="mjproj-card">
+          <div class="mjproj-thumb"><div class="mjproj-num">02</div><div class="placeholder-x">Add screenshot</div></div>
+          <div class="mjproj-body">
+            <span class="mjproj-tag">CRM</span>
+            <h3>Database Audit Report</h3>
+            <p>A before-and-after look at a full CRM clean-up — duplicates resolved, records verified.</p>
+            <button class="mjproj-link" onclick="showPage('portfolio')">View →</button>
+          </div>
+        </div>
+        <div class="mjproj-card">
+          <div class="mjproj-thumb"><div class="mjproj-num">03</div><div class="placeholder-x">Add screenshot</div></div>
+          <div class="mjproj-body">
+            <span class="mjproj-tag">Design</span>
+            <h3>Graphic Design Set</h3>
+            <p>Flyers, reels, and branded graphics built for consistent, on-platform posting.</p>
+            <button class="mjproj-link" onclick="showPage('portfolio')">View →</button>
+          </div>
+        </div>
+      </div>
+      <div class="mjproj-more"><button onclick="showPage('portfolio')">View All Works →</button></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="max">
+      <div class="mjpr-cta">
+        <div class="mjpr-cta-eyebrow">Let's Work Together</div>
+        <h2>Ready to hand off the operational details and get back to what only you can do?</h2>
+        <a href="#" class="mjpr-btn" onclick="return false;">Let's Connect</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COORDINATION ============ -->
+<section class="mjpage" id="page-coordination">
+  <div class="mjhero bg-coord">
+    <div class="eyebrow" style="color:var(--tuscan);">Specialization 01</div>
+    <h1 class="mjhero-title" style="color:var(--cream);">Project &amp; Transaction Coordinator</h1>
+    <p class="mjhero-intro" style="opacity:1; color:var(--portabella);">I run point on every file from executed contract to closing — timelines, disclosures, and the dozen moving parts in between — so nothing slips and no one has to chase me for status.</p>
+    <div class="mjhero-chips">
+      <div class="mjhero-chip" style="border-color:rgba(153,130,117,0.5); background:rgba(125,75,71,0.12);">Contract-to-Close Timelines</div>
+      <div class="mjhero-chip" style="border-color:rgba(153,130,117,0.5); background:rgba(125,75,71,0.12);">Disclosures &amp; Compliance</div>
+      <div class="mjhero-chip" style="border-color:rgba(153,130,117,0.5); background:rgba(125,75,71,0.12);">Milestone Tracking</div>
+      <div class="mjhero-chip" style="border-color:rgba(153,130,117,0.5); background:rgba(125,75,71,0.12);">Wise Agent CRM</div>
+      <div class="mjhero-chip" style="border-color:rgba(153,130,117,0.5); background:rgba(125,75,71,0.12);">Dotloop &amp; DocuSign</div>
+    </div>
+  </div>
+
+  <div class="mjdet-wrap">
+    <div class="max">
+      <div class="mjdet-grid">
+        <div class="mjdet-cell"><h4>What I Do</h4><ul>
+          <li>Manage transaction timelines from executed contract through closing</li>
+          <li>Coordinate with title companies, lenders, inspectors, and co-op agents</li>
+          <li>Schedule inspections, appraisals, walkthroughs, and closings</li>
+        </ul></div>
+        <div class="mjdet-cell"><h4>My Contribution</h4><ul>
+          <li>Prepare, send, and track disclosures, addendums, and compliance documents</li>
+          <li>Keep the CRM and transaction checklists updated daily</li>
+          <li>Send regular status updates to clients and agents</li>
+        </ul></div>
+        <div class="mjdet-cell"><h4>Experience</h4><p>Operations Specialist &amp; Executive Assistant, Transaction Coordination — Dana Blanks Real Estate. Managed multi-million-dollar transaction pipelines with zero missed deadlines across strict contract-to-close timelines.</p></div>
+        <div class="mjdet-cell"><h4>Approach</h4><p>Proactive, not reactive — signatures and paperwork are secured well ahead of legal cutoff dates, not chased at the deadline.</p></div>
+      </div>
+      <div class="mjdet-tools">
+        <div class="mjdet-tools-label">Tools</div>
+        <div class="mjdet-tools-row"><span>Wise Agent</span><span>Dotloop</span><span>DocuSign</span><span>ZipForm</span><span>HiveMLS</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mjws-wrap">
+    <div class="max">
+      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
+      <div class="mjws-grid">
+        <div class="mjws-card"><div class="tag">Transactions</div><div class="placeholder-x">Add screenshot</div><div class="cap">Contract-to-Close Tracker</div><div class="sub">Transaction milestone system</div></div>
+        <div class="mjws-card"><div class="tag">Transactions</div><div class="placeholder-x">Add screenshot</div><div class="cap">Compliance Checklist</div><div class="sub">Disclosure &amp; document tracking</div></div>
+      </div>
+      <p class="mjws-note">Swap each card's background for a real screenshot or case-study thumbnail.</p>
+    </div>
+  </div>
+
+  <div class="mjstrip">
+    <p>Need someone to run point from contract to close?</p>
+    <a href="#" onclick="return false;">Let's Connect</a>
+  </div>
+</section>
+
+<!-- ============ CRM ============ -->
+<section class="mjpage" id="page-crm">
+  <div class="mjhero bg-crm">
+    <div class="eyebrow">Specialization 02</div>
+    <h1 class="mjhero-title">Database Auditing &amp; CRM Management</h1>
+    <p class="mjhero-intro">I keep the system of record clean — every entry verified, every duplicate resolved, every ledger reconciled — so the data your business runs on can actually be trusted.</p>
+    <div class="mjhero-chips">
+      <div class="mjhero-chip">CRM Auditing</div>
+      <div class="mjhero-chip">High-Stakes Data Verification</div>
+      <div class="mjhero-chip">Ledger Accuracy</div>
+      <div class="mjhero-chip">Reconciliation Support</div>
+      <div class="mjhero-chip">GDPR &amp; Data Privacy</div>
+    </div>
+  </div>
+
+  <div class="mjdet-wrap">
+    <div class="max">
+      <div class="mjdet-grid">
+        <div class="mjdet-cell"><h4>What I Do</h4><ul>
+          <li>Own database administration and CRM cleanliness for fast-paced operations</li>
+          <li>Audit records for accuracy, duplicates, and compliance gaps</li>
+          <li>Track team schedules and follow-up pipelines inside the CRM</li>
+        </ul></div>
+        <div class="mjdet-cell"><h4>My Contribution</h4><ul>
+          <li>Executed high-stakes data verification across multi-million-dollar portfolios</li>
+          <li>Maintained digital archives in a pristine, audit-ready state</li>
+          <li>Enforced strict data privacy and confidentiality boundaries</li>
+        </ul></div>
+        <div class="mjdet-cell"><h4>Experience</h4><p>Operations Specialist — Dana Blanks Real Estate. CRM &amp; Operations Administrator — Alpha Bravo Company Real Estate. Billing Associate — Sutherland Global, eliminating financial discrepancies and lifting record-keeping efficiency by 25%.</p></div>
+        <div class="mjdet-cell"><h4>Approach</h4><p>Zero tolerance for discrepancies. The work happens quietly in the background — you notice it only by how little ever goes wrong.</p></div>
+      </div>
+      <div class="mjdet-tools">
+        <div class="mjdet-tools-label">Tools</div>
+        <div class="mjdet-tools-row"><span>HubSpot</span><span>Salesforce</span><span>Zendesk</span><span>Microsoft 365</span><span>Google Workspace</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mjws-wrap">
+    <div class="max">
+      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
+      <div class="mjws-grid">
+        <div class="mjws-card"><div class="tag">CRM</div><div class="placeholder-x">Add screenshot</div><div class="cap">Database Audit Report</div><div class="sub">CRM clean-up before / after</div></div>
+      </div>
+      <p class="mjws-note">Swap each card's background for a real screenshot or case-study thumbnail.</p>
+    </div>
+  </div>
+
+  <div class="mjstrip">
+    <p>Ready for a CRM you can actually trust?</p>
+    <a href="#" onclick="return false;">Let's Connect</a>
+  </div>
+</section>
+
+<!-- ============ LISTINGS ============ -->
+<section class="mjpage" id="page-listings">
+  <div class="mjhero bg-listings">
+    <div class="eyebrow">Specialization 03</div>
+    <h1 class="mjhero-title">Listing Coordinator</h1>
+    <p class="mjhero-intro">I get every property market-ready before it ever goes live — accurate MLS entries, complete disclosures, and clean marketing details — so listings launch without a single correction chasing them.</p>
+    <div class="mjhero-chips">
+      <div class="mjhero-chip">MLS Listing Management</div>
+      <div class="mjhero-chip">HiveMLS</div>
+      <div class="mjhero-chip">Listing Accuracy &amp; Compliance</div>
+      <div class="mjhero-chip">Marketing Coordination</div>
+    </div>
+  </div>
+
+  <div class="mjdet-wrap">
+    <div class="max">
+      <div class="mjdet-grid">
+        <div class="mjdet-cell"><h4>What I Do</h4><ul>
+          <li>Create, update, and audit MLS listings for accuracy and compliance</li>
+          <li>Coordinate listing photos, descriptions, and disclosures ahead of launch</li>
+          <li>Track listing status from prep through active and closed</li>
+        </ul></div>
+        <div class="mjdet-cell"><h4>My Contribution</h4><ul>
+          <li>Updated and maintained MLS listings across an active property portfolio</li>
+          <li>Guaranteed 100% compliance with industry policies and regulatory frameworks</li>
+          <li>Coordinated with agents to keep listing details current at every stage</li>
+        </ul></div>
+        <div class="mjdet-cell"><h4>Experience</h4><p>Real Estate VA — Dana Blanks Real Estate. Updated and maintained MLS listings with rigorous document auditing across all legal agreements, contracts, and disclosures.</p></div>
+        <div class="mjdet-cell"><h4>Approach</h4><p>Every listing is client-ready before it goes live — accuracy up front means no corrections chasing it after.</p></div>
+      </div>
+      <div class="mjdet-tools">
+        <div class="mjdet-tools-label">Tools</div>
+        <div class="mjdet-tools-row"><span>HiveMLS</span><span>MLS</span><span>Wise Agent</span><span>ZipForm</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mjws-wrap">
+    <div class="max">
+      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
+      <div class="mjws-grid">
+        <div class="mjws-card"><div class="tag">Listings</div><div class="placeholder-x">Add screenshot</div><div class="cap">MLS Listing Checklist</div><div class="sub">Listing prep &amp; launch tracker</div></div>
+      </div>
+      <p class="mjws-note">Swap each card's background for a real screenshot or case-study thumbnail.</p>
+    </div>
+  </div>
+
+  <div class="mjstrip">
+    <p>Want listings that are correct the first time?</p>
+    <a href="#" onclick="return false;">Let's Connect</a>
+  </div>
+</section>
+
+<!-- ============ SOCIAL ============ -->
+<section class="mjpage" id="page-social">
+  <div class="mjhero bg-social">
+    <div class="eyebrow" style="color:var(--nuln); opacity:1;">Specialization 04</div>
+    <h1 class="mjhero-title">Social Media Manager</h1>
+    <p class="mjhero-intro" style="opacity:1;">I turn your brand into consistent, on-platform content — graphic designs, flyers, and reels — backed by a calendar that keeps your socials running without you touching a single upload.</p>
+    <div class="mjhero-chips">
+      <div class="mjhero-chip" style="background:rgba(19,15,13,0.2);">Graphic Design &amp; Flyers</div>
+      <div class="mjhero-chip" style="background:rgba(19,15,13,0.2);">Reels &amp; Short-Form Video</div>
+      <div class="mjhero-chip" style="background:rgba(19,15,13,0.2);">Content Calendars</div>
+      <div class="mjhero-chip" style="background:rgba(19,15,13,0.2);">Multi-Platform Scheduling</div>
+      <div class="mjhero-chip" style="background:rgba(19,15,13,0.2);">Community Engagement</div>
+    </div>
+  </div>
+
+  <div class="mjdet-wrap">
+    <div class="max">
+      <div class="mjdet-grid">
+        <div class="mjdet-cell"><h4>What I Do</h4><ul>
+          <li>Create graphic designs, flyers, and branded visual content</li>
+          <li>Manage content across Instagram, Facebook, and LinkedIn</li>
+          <li>Build and maintain a monthly content calendar</li>
+        </ul></div>
+        <div class="mjdet-cell"><h4>My Contribution</h4><ul>
+          <li>Produced graphic designs, flyers, and reels for multi-platform use</li>
+          <li>Coordinated captions, titles, hooks, hashtags, thumbnails, and descriptions</li>
+          <li>Tracked post performance and recommended improvements</li>
+        </ul></div>
+        <div class="mjdet-cell"><h4>Experience</h4><p>Real Estate VA &amp; Social Media Manager — Dana Blanks Real Estate. Built out a full content pipeline spanning graphic design, flyers, and reels while driving ongoing personal-brand growth.</p></div>
+        <div class="mjdet-cell"><h4>Approach</h4><p>One brand, styled consistently everywhere — design, video, and copy all speaking the same visual language.</p></div>
+      </div>
+      <div class="mjdet-tools">
+        <div class="mjdet-tools-label">Tools</div>
+        <div class="mjdet-tools-row"><span>Canva</span><span>Instagram</span><span>Facebook</span><span>LinkedIn</span><span>Content Calendar</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mjws-wrap">
+    <div class="max">
+      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
+      <div class="mjws-grid">
+        <div class="mjws-card"><div class="tag">Design</div><div class="placeholder-x">Add screenshot</div><div class="cap">Graphic Design Set</div><div class="sub">Flyers, reels &amp; branded graphics</div></div>
+        <div class="mjws-card"><div class="tag">Social</div><div class="placeholder-x">Add screenshot</div><div class="cap">Content Calendar</div><div class="sub">Monthly multi-platform plan</div></div>
+      </div>
+      <p class="mjws-note">Swap each card's background for a real screenshot or case-study thumbnail.</p>
+    </div>
+  </div>
+
+  <div class="mjstrip">
+    <p>Ready for content that never goes quiet?</p>
+    <a href="#" onclick="return false;">Let's Connect</a>
+  </div>
+</section>
+
+<!-- ============ TOOLS ============ -->
+<section class="mjpage" id="page-tools">
+  <div class="mjrev-hero">
+    <h1>Tools &amp; Platforms</h1>
+    <p>The systems I run day-to-day — real estate, CRM, project management, and design.</p>
+  </div>
+
+  <div class="mjws-wrap" style="padding-top:70px;">
+    <div class="max">
+      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Real Estate &amp; Listings</span><div class="sec-line"></div></div>
+      <div class="mjtool-grid">
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Wise Agent</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Dotloop</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">DocuSign</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">ZipForm</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">HiveMLS</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mjws-wrap" style="padding-top:0;">
+    <div class="max">
+      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">CRM &amp; Systems</span><div class="sec-line"></div></div>
+      <div class="mjtool-grid">
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">HubSpot</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Salesforce</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Zendesk</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Microsoft 365</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Google Workspace</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mjws-wrap" style="padding-top:0;">
+    <div class="max">
+      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Project &amp; Operations</span><div class="sec-line"></div></div>
+      <div class="mjtool-grid">
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">ClickUp</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Asana</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Trello</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mjws-wrap" style="padding-top:0;">
+    <div class="max">
+      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Design &amp; Social</span><div class="sec-line"></div></div>
+      <div class="mjtool-grid">
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Canva</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Instagram</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Facebook</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">LinkedIn</div></div>
+      </div>
+      <p class="mjws-note">Each frame is ready for a tool logo — swap the placeholder box for a real icon as you add new tools to your stack.</p>
+    </div>
+  </div>
+
+  <div class="mjstrip">
+    <p>Want to know if I already use your systems?</p>
+    <a href="#" onclick="return false;">Let's Connect</a>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO / MY WORKS ============ -->
+<section class="mjpage" id="page-portfolio">
+  <div class="mjrev-hero">
+    <h1>My Works</h1>
+    <p>A full look at how I work across coordination, CRM, listings, and content — before you book.</p>
+  </div>
+
+  <div class="mjws-wrap" style="padding-top:70px;">
+    <div class="max">
+      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Coordination &amp; CRM</span><div class="sec-line"></div></div>
+      <div class="mjws-grid">
+        <div class="mjws-card"><div class="tag">Transactions</div><div class="placeholder-x">Add screenshot</div><div class="cap">Contract-to-Close Tracker</div><div class="sub">Transaction milestone system</div></div>
+        <div class="mjws-card"><div class="tag">Transactions</div><div class="placeholder-x">Add screenshot</div><div class="cap">Compliance Checklist</div><div class="sub">Disclosure &amp; document tracking</div></div>
+        <div class="mjws-card"><div class="tag">CRM</div><div class="placeholder-x">Add screenshot</div><div class="cap">Database Audit Report</div><div class="sub">CRM clean-up before / after</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mjws-wrap" style="padding-top:0;">
+    <div class="max">
+      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Listings &amp; Social</span><div class="sec-line"></div></div>
+      <div class="mjws-grid">
+        <div class="mjws-card"><div class="tag">Listings</div><div class="placeholder-x">Add screenshot</div><div class="cap">MLS Listing Checklist</div><div class="sub">Listing prep &amp; launch tracker</div></div>
+        <div class="mjws-card"><div class="tag">Design</div><div class="placeholder-x">Add screenshot</div><div class="cap">Graphic Design Set</div><div class="sub">Flyers, reels &amp; branded graphics</div></div>
+        <div class="mjws-card"><div class="tag">Social</div><div class="placeholder-x">Add screenshot</div><div class="cap">Content Calendar</div><div class="sub">Monthly multi-platform plan</div></div>
+      </div>
+      <p class="mjws-note">Swap each card's background for a real screenshot, PDF export, or case-study thumbnail as you collect samples from real client work.</p>
+    </div>
+  </div>
+
+  <div class="mjstrip">
+    <p>Like what you see? Let's talk about your project.</p>
+    <a href="#" onclick="return false;">Let's Connect</a>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="mjpage" id="page-reviews">
+  <div class="mjrev-hero">
+    <h1>Client Reviews</h1>
+    <p>What it's like to hand off the operational details.</p>
+  </div>
+  <div class="mjrev-wrap">
+    <div class="max">
+      <div class="mjrev-grid">
+        <div class="mjrev-card">
+          <div>
+            <p class="mjrev-quote">"A big shout-out to her for the transaction coordination piece — that's what's helping me keep moving from one deal to the next. Having her on top of deadlines and sending emails has just been a blessing. It's been great."</p>
+          </div>
+          <div class="mjrev-foot">
+            <div class="mjrev-name">Carolyn</div>
+            <div class="mjrev-role">DBRE</div>
+            <div class="mjrev-tags"><span class="mjrev-tag">Transaction Coordination</span><span class="mjrev-tag">Listing Coordination</span></div>
+          </div>
+        </div>
+        <div class="mjrev-card">
+          <div>
+            <p class="mjrev-quote">"MJ is on top of things — she really has been amazing. I'm very happy with the job she's been doing."</p>
+          </div>
+          <div class="mjrev-foot">
+            <div class="mjrev-name">Devon</div>
+            <div class="mjrev-role">DBRE</div>
+            <div class="mjrev-tags"><span class="mjrev-tag">Transaction Coordination</span><span class="mjrev-tag">CRM</span></div>
+          </div>
+        </div>
+        <div class="mjrev-card">
+          <div>
+            <p class="mjrev-quote">"She's doing a great job with transaction coordination. She caught on very quickly, and I am very, very pleased with the job she's doing."</p>
+          </div>
+          <div class="mjrev-foot">
+            <div class="mjrev-name">Dana</div>
+            <div class="mjrev-role">DBRE</div>
+            <div class="mjrev-tags"><span class="mjrev-tag">Social Media</span><span class="mjrev-tag">Transaction Coordination</span><span class="mjrev-tag">CRM</span></div>
+          </div>
+        </div>
+        <div class="mjrev-card">
+          <div>
+            <p class="mjrev-quote">"I really appreciate her taking that part on for me — making sure everything I need signed is signed, and that everything's moving along in a timely manner. I didn't even have to chime in; she reached out to me and asked, 'Do you want me to take over?'"</p>
+          </div>
+          <div class="mjrev-foot">
+            <div class="mjrev-name">Graham Team</div>
+            <div class="mjrev-role">DBRE</div>
+            <div class="mjrev-tags"><span class="mjrev-tag">Transaction Coordination</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mjstrip">
+    <p>Want to be the next review on this page?</p>
+    <a href="#" onclick="return false;">Let's Connect</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="mjpage" id="page-contact">
+  <div class="mjrev-hero">
+    <h1>Let's Connect</h1>
+    <p>Reach out directly, or find me on social — whichever's easiest for you.</p>
+  </div>
+  <div class="mjrev-wrap">
+    <div class="max" style="text-align:center;">
+      <div class="mjsocial-label">Social</div>
+      <div class="mjsocial-row" style="margin-bottom:56px;">
+        <a class="mjsocial-icon lg" href="https://www.linkedin.com/in/mary-jane-pagalan-644503246" target="_blank" rel="noopener" title="LinkedIn">in</a>
+        <a class="mjsocial-icon lg" href="https://www.instagram.com/im.__.ji/" target="_blank" rel="noopener" title="Instagram">IG</a>
+        <a class="mjsocial-icon lg" href="https://www.facebook.com/mirijane.14" target="_blank" rel="noopener" title="Facebook">f</a>
+        <a class="mjsocial-icon lg" href="mailto:Maryjanepagalan14@gmail.com" title="Email">@</a>
+        <a class="mjsocial-icon lg" href="tel:+639533470832" title="Call">☏</a>
+      </div>
+      <div class="mjsocial-label">Direct</div>
+      <div class="mjcontact-grid">
+        <a class="mjcontact-card" href="tel:+639533470832">
+          <div class="mjcontact-label">Call</div>
+          <div class="mjcontact-value">+63 953 347 0832</div>
+        </a>
+        <a class="mjcontact-card" href="mailto:Maryjanepagalan14@gmail.com">
+          <div class="mjcontact-label">Email</div>
+          <div class="mjcontact-value">Maryjanepagalan14@gmail.com</div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="mjstrip">
+    <p>Prefer to talk specifics first?</p>
+    <a href="#" onclick="return false;">Let's Connect</a>
+  </div>
+</section>
+
+<footer class="mjfoot">
+  <div class="mjfoot-inner">
+    <div class="mjsocial-row">
+      <a class="mjsocial-icon" href="https://www.linkedin.com/in/mary-jane-pagalan-644503246" target="_blank" rel="noopener" title="LinkedIn">in</a>
+      <a class="mjsocial-icon" href="https://www.instagram.com/im.__.ji/" target="_blank" rel="noopener" title="Instagram">IG</a>
+      <a class="mjsocial-icon" href="https://www.facebook.com/mirijane.14" target="_blank" rel="noopener" title="Facebook">f</a>
+      <a class="mjsocial-icon" href="mailto:Maryjanepagalan14@gmail.com" title="Email">@</a>
+      <a class="mjsocial-icon" href="tel:+639533470832" title="Call">☏</a>
+    </div>
+    <div class="mjfoot-links">
+      <a href="tel:+639533470832">+63 953 347 0832</a>
+      <span class="mjfoot-dot">·</span>
+      <a href="mailto:Maryjanepagalan14@gmail.com">Maryjanepagalan14@gmail.com</a>
+    </div>
+  </div>
+  <div class="mjfoot-copy">MJ &nbsp;·&nbsp; VIRTUAL ASSISTANT &nbsp;·&nbsp; 2026</div>
+</footer>
+
+<script>
+  function showPage(id){
+    document.querySelectorAll('.mjpage').forEach(function(p){ p.classList.remove('active'); });
+    var target = document.getElementById('page-' + id);
+    if(target){ target.classList.add('active'); }
+    document.querySelectorAll('.mjnav-link').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-page') === id);
+    });
+    document.getElementById('navLinks').classList.remove('open');
+    window.scrollTo({top:0, behavior:'auto'});
+  }
+  function toggleNav(){
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelector('.mjnav-link[data-page="home"]').classList.add('active');
+</script>
+
+</body>
+</html>

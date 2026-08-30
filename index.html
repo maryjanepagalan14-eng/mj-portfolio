@@ -237,6 +237,26 @@
   .mjstrip{background:var(--breakup); padding:50px 40px; text-align:center; border-top:1px solid rgba(233,215,201,0.12);}
   .mjstrip p{font-family:'Playfair Display',serif; font-style:italic; font-size:18px; color:var(--cream); margin-bottom:20px;}
   .mjstrip a{display:inline-block; font-size:11.5px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--cream); background:var(--tuscan); padding:14px 30px; border:1px solid var(--tuscan);}
+  .mjstrip .mjstrip-soft{background:none; color:var(--cream); border:1px solid rgba(233,215,201,0.4); margin-left:12px;}
+  .mjstrip .mjstrip-soft:hover{background:rgba(233,215,201,0.08);}
+
+  /* ===== CASE STUDY STORY BLOCKS ===== */
+  .mjcase{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(233,215,201,0.15); border:1px solid rgba(233,215,201,0.15); margin-bottom:36px;}
+  .mjcase-cell{background:var(--breakup); padding:26px 24px;}
+  .mjcase-cell .lbl{font-size:10px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--tuscan); margin-bottom:10px;}
+  .mjcase-cell p{font-size:12.5px; line-height:1.75; color:var(--portabella); margin:0;}
+  .mjcase-cell.result .lbl{color:#D98A78;}
+  .mjcase-cell.result p{color:var(--cream);}
+  @media(max-width:760px){.mjcase{grid-template-columns:1fr;}}
+
+  /* ===== EXPERIENCE (home) ===== */
+  .mjexp{display:flex; flex-direction:column; gap:1px; background:rgba(233,215,201,0.15); border:1px solid rgba(233,215,201,0.15); margin-bottom:24px;}
+  .mjexp-row{background:var(--breakup); padding:26px 28px; display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;}
+  .mjexp-row h3{font-family:'Playfair Display',serif; font-weight:600; font-size:17px; color:var(--cream); margin-bottom:6px;}
+  .mjexp-row .dates{font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--tuscan); font-weight:600; white-space:nowrap;}
+  .mjexp-row p{font-size:12.5px; line-height:1.7; color:var(--portabella); max-width:640px; margin:0;}
+  .mjexp-dl{text-align:center; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--portabella); border-bottom:1px solid rgba(233,215,201,0.3); padding-bottom:2px;}
+  .mjexp-dl:hover{color:var(--cream); border-color:var(--cream);}
 
   /* ===== REVIEWS / CONTACT HERO ===== */
   .mjrev-hero{background:var(--breakup); padding:90px 40px 70px; text-align:center;}
@@ -283,10 +303,10 @@
   .mjabout-photo img{transition:transform 0.6s cubic-bezier(.16,.84,.44,1);}
   .mjabout-photo:hover img{transform:scale(1.06);}
 
-  .mjspec-card, .mjproj-card, .mjws-card, .mjtool-card, .mjrev-card, .mjtease-card, .mjpr-step, .mjdet-cell, .mjcontact-card{
+  .mjspec-card, .mjproj-card, .mjws-card, .mjtool-card, .mjrev-card, .mjtease-card, .mjpr-step, .mjdet-cell, .mjcontact-card, .mjexp-row{
     transition:transform 0.4s cubic-bezier(.16,.84,.44,1), box-shadow 0.4s ease;
   }
-  .mjspec-card:hover, .mjproj-card:hover, .mjws-card:hover, .mjtool-card:hover, .mjrev-card:hover, .mjtease-card:hover, .mjpr-step:hover, .mjdet-cell:hover, .mjcontact-card:hover{
+  .mjspec-card:hover, .mjproj-card:hover, .mjws-card:hover, .mjtool-card:hover, .mjrev-card:hover, .mjtease-card:hover, .mjpr-step:hover, .mjdet-cell:hover, .mjcontact-card:hover, .mjexp-row:hover{
     transform:translateY(-6px);
     box-shadow:0 20px 40px -18px rgba(102,25,40,0.55);
   }
@@ -294,11 +314,11 @@
   .mjws-card .placeholder-x, .mjproj-thumb .placeholder-x{transition:transform 0.5s ease;}
   .mjws-card:hover .placeholder-x, .mjproj-thumb:hover .placeholder-x{transform:scale(1.08);}
 
-  .mjspec-card, .mjproj-card, .mjws-card, .mjtool-card, .mjrev-card, .mjtease-card, .mjpr-step, .mjdet-cell, .mjabout-photo, .mjabout-bio, .mjabout-help, .mjabout-stat{
+  .mjspec-card, .mjproj-card, .mjws-card, .mjtool-card, .mjrev-card, .mjtease-card, .mjpr-step, .mjdet-cell, .mjabout-photo, .mjabout-bio, .mjabout-help, .mjabout-stat, .mjexp-row, .mjcase-cell{
     opacity:0; transform:translateY(28px);
     transition:opacity 0.7s cubic-bezier(.16,.84,.44,1), transform 0.7s cubic-bezier(.16,.84,.44,1), box-shadow 0.4s ease;
   }
-  .mjspec-card.in-view, .mjproj-card.in-view, .mjws-card.in-view, .mjtool-card.in-view, .mjrev-card.in-view, .mjtease-card.in-view, .mjpr-step.in-view, .mjdet-cell.in-view, .mjabout-photo.in-view, .mjabout-bio.in-view, .mjabout-help.in-view, .mjabout-stat.in-view{
+  .mjspec-card.in-view, .mjproj-card.in-view, .mjws-card.in-view, .mjtool-card.in-view, .mjrev-card.in-view, .mjtease-card.in-view, .mjpr-step.in-view, .mjdet-cell.in-view, .mjabout-photo.in-view, .mjabout-bio.in-view, .mjabout-help.in-view, .mjabout-stat.in-view, .mjexp-row.in-view, .mjcase-cell.in-view{
     opacity:1; transform:translateY(0);
   }
 
@@ -475,9 +495,39 @@
     </div>
   </div>
 
+  <div class="sec tight">
+    <div class="max">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Experience</h2><div class="sec-line"></div></div>
+      <div class="mjexp">
+        <div class="mjexp-row">
+          <div>
+            <h3>Real Estate VA &amp; Social Media Manager — Dana Blanks Real Estate</h3>
+            <p>Owned transaction coordination end-to-end — contract through closing — across a live pipeline, coordinating title companies, lenders, inspectors, and co-op agents to hit 100% of critical deadlines. Ran the monthly content calendar across Instagram, Facebook, and LinkedIn.</p>
+          </div>
+          <div class="dates">Mar 2026 – Jul 2026</div>
+        </div>
+        <div class="mjexp-row">
+          <div>
+            <h3>Operations Specialist &amp; Executive Assistant — Dana Blanks Real Estate</h3>
+            <p>Managed a high-volume executive inbox and multi-advisor calendar, designed internal SOPs that standardized recurring workflows, and kept CRM and digital archives in audit-ready condition.</p>
+          </div>
+          <div class="dates">Oct 2025 – Mar 2026</div>
+        </div>
+        <div class="mjexp-row">
+          <div>
+            <h3>Project Coordinator &amp; Team Lead — Flatworld Solutions</h3>
+            <p>Delivered a 100% on-schedule completion rate across multiple concurrent projects; coordinated vendors and cross-functional teams, contributing to a 20% lift in operational efficiency.</p>
+          </div>
+          <div class="dates">Jul 2023 – Oct 2025</div>
+        </div>
+      </div>
+      <a class="mjexp-dl" href="MJ-Pagalan-Resume.pdf" download>Download Full Resume (PDF) ↓</a>
+    </div>
+  </div>
+
   <div class="sec">
     <div class="max">
-      <div class="sec-head"><span class="sec-num">03</span><h2>My Process</h2><div class="sec-line"></div></div>
+      <div class="sec-head"><span class="sec-num">04</span><h2>My Process</h2><div class="sec-line"></div></div>
       <div class="mjpr-steps">
         <div class="mjpr-step"><div class="n">01</div><h3>Discover</h3><p>I audit your current systems, tools, and gaps — where time is leaking and where risk is hiding.</p></div>
         <div class="mjpr-step"><div class="n">02</div><h3>Structure</h3><p>I build the workflow, SOP, or calendar that removes the friction — documented, so it outlasts me.</p></div>
@@ -489,7 +539,7 @@
 
   <div class="sec tight" style="background:var(--breakup);">
     <div class="max">
-      <div class="sec-head"><span class="sec-num">04</span><h2>My Works</h2><div class="sec-line"></div></div>
+      <div class="sec-head"><span class="sec-num">05</span><h2>My Works</h2><div class="sec-line"></div></div>
       <div class="mjproj-grid">
         <div class="mjproj-card">
           <div class="mjproj-thumb"><div class="mjproj-num">01</div><img src="contract-to-close-tracker.png" alt="Contract-to-Close Tracker ClickUp board"></div>
@@ -575,6 +625,11 @@
   <div class="mjws-wrap">
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
+      <div class="mjcase">
+        <div class="mjcase-cell"><div class="lbl">The Problem</div><p>On a typical buyer-side deal, disclosure and compliance documents get sent — but nobody's tracking who's signed, who hasn't, and what's about to blow past its legal deadline. Agents find out something's missing when it's already late.</p></div>
+        <div class="mjcase-cell"><div class="lbl">What I Built</div><p>A live milestone tracker for 412 Ashewood Ln covering every disclosure, addendum, and inspection date — sent date, signer, status, and days-to-deadline, flagged before anything hit the cutoff.</p></div>
+        <div class="mjcase-cell result"><div class="lbl">The Result</div><p>Every disclosure signed and filed before deadline. Zero last-minute scrambles, zero compliance gaps, zero missed closings.</p></div>
+      </div>
       <div class="mjws-grid">
         <div class="mjws-card has-ss">
           <img class="ss" src="contract-to-close-tracker.png" alt="Contract-to-Close Tracker ClickUp board — 412 Ashewood Ln">
@@ -601,6 +656,7 @@
   <div class="mjstrip">
     <p>Need someone to run point from contract to close?</p>
     <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
+    <a class="mjstrip-soft" href="#" onclick="showPage('audit'); return false;">Get a Free 15-Min Ops Audit</a>
   </div>
 </section>
 
@@ -645,6 +701,11 @@
   <div class="mjws-wrap">
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
+      <div class="mjcase">
+        <div class="mjcase-cell"><div class="lbl">The Problem</div><p>Duplicate contacts, no assigned lead owners, missing fields — a CRM nobody trusted enough to actually use for follow-up.</p></div>
+        <div class="mjcase-cell"><div class="lbl">What I Did</div><p>Audited every record, merged duplicates, assigned ownership, and standardized lead-status and lifecycle-stage fields across the database.</p></div>
+        <div class="mjcase-cell result"><div class="lbl">The Result</div><p>A CRM the team can actually query and trust — see the before/after screenshots below.</p></div>
+      </div>
       <div class="mjws-grid">
         <div class="mjws-card has-ss">
           <img class="ss" src="database-audit-summary.png" alt="CRM database audit report summary — messy data audited and reconciled">
@@ -675,6 +736,7 @@
   <div class="mjstrip">
     <p>Ready for a CRM you can actually trust?</p>
     <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
+    <a class="mjstrip-soft" href="#" onclick="showPage('audit'); return false;">Get a Free 15-Min Ops Audit</a>
   </div>
 </section>
 
@@ -718,6 +780,11 @@
   <div class="mjws-wrap">
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
+      <div class="mjcase">
+        <div class="mjcase-cell"><div class="lbl">The Problem</div><p>Listings going live with incomplete photos, missing disclosures, or inaccurate MLS fields — meaning corrections (and buyer confusion) after launch.</p></div>
+        <div class="mjcase-cell"><div class="lbl">What I Built</div><p>A pre-launch prep checklist for 128 Willow Creek Dr covering every required field, photo, and disclosure — nothing goes live until every box is checked.</p></div>
+        <div class="mjcase-cell result"><div class="lbl">The Result</div><p>Listing launched accurate the first time — no post-launch corrections, no compliance flags.</p></div>
+      </div>
       <div class="mjws-grid">
         <div class="mjws-card has-ss">
           <img class="ss" src="mls-listing-prep-checklist.png" alt="MLS Listing Prep Checklist ClickUp board — 128 Willow Creek Dr">
@@ -741,6 +808,7 @@
   <div class="mjstrip">
     <p>Want listings that are correct the first time?</p>
     <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
+    <a class="mjstrip-soft" href="#" onclick="showPage('audit'); return false;">Get a Free 15-Min Ops Audit</a>
   </div>
 </section>
 
@@ -784,7 +852,13 @@
 
   <div class="mjws-wrap">
     <div class="max">
-      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
+      <div class="sec-head" style="margin-bottom:12px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
+      <p style="font-size:12.5px; color:var(--portabella); margin-bottom:30px; max-width:600px;">Real-client social samples for DBRE are in progress — the set below shows my design range and content system on other brands in the meantime.</p>
+      <div class="mjcase">
+        <div class="mjcase-cell"><div class="lbl">The Problem</div><p>Agent had zero presence between closings — no content calendar, no consistent visual identity, posts going out sporadically with no strategy.</p></div>
+        <div class="mjcase-cell"><div class="lbl">What I Built</div><p>A branded flyer and post suite (Just Listed, Open House, Just Closed) plus a monthly content calendar for consistent posting.</p></div>
+        <div class="mjcase-cell result"><div class="lbl">The Result</div><p>A recognizable, on-brand feed that stays active without the agent touching a single upload.</p></div>
+      </div>
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Real Estate Marketing</span><div class="sec-line"></div></div>
       <div class="mjws-grid">
         <div class="mjws-card has-ss">
@@ -846,6 +920,7 @@
   <div class="mjstrip">
     <p>Ready for content that never goes quiet?</p>
     <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
+    <a class="mjstrip-soft" href="#" onclick="showPage('audit'); return false;">Get a Free 15-Min Ops Audit</a>
   </div>
 </section>
 
@@ -911,6 +986,7 @@
   <div class="mjstrip">
     <p>Want to know if I already use your systems?</p>
     <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
+    <a class="mjstrip-soft" href="#" onclick="showPage('audit'); return false;">Get a Free 15-Min Ops Audit</a>
   </div>
 </section>
 
@@ -1014,6 +1090,7 @@
   <div class="mjstrip">
     <p>Like what you see? Let's talk about your project.</p>
     <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
+    <a class="mjstrip-soft" href="#" onclick="showPage('audit'); return false;">Get a Free 15-Min Ops Audit</a>
   </div>
 </section>
 
@@ -1073,6 +1150,7 @@
   <div class="mjstrip">
     <p>Want to be the next review on this page?</p>
     <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
+    <a class="mjstrip-soft" href="#" onclick="showPage('audit'); return false;">Get a Free 15-Min Ops Audit</a>
   </div>
 </section>
 
@@ -1108,6 +1186,38 @@
   <div class="mjstrip">
     <p>Prefer to talk specifics first?</p>
     <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
+    <a class="mjstrip-soft" href="#" onclick="showPage('audit'); return false;">Get a Free 15-Min Ops Audit</a>
+  </div>
+</section>
+
+<!-- ============ FREE OPS AUDIT ============ -->
+<section class="mjpage" id="page-audit">
+  <div class="mjrev-hero">
+    <h1>Free 15-Min Ops Audit</h1>
+    <p>Not ready to book a call yet? Answer 4 quick questions and I'll reply with 2-3 fixes you can use — no strings attached.</p>
+  </div>
+  <div class="mjrev-wrap">
+    <div class="max" style="max-width:640px;">
+      <form id="mjAuditForm">
+        <div style="margin-bottom:22px;">
+          <label style="display:block; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--tuscan); margin-bottom:8px;">Your Name</label>
+          <input type="text" id="auditName" required style="width:100%; background:var(--breakup); border:1px solid rgba(233,215,201,0.25); color:var(--cream); padding:12px 14px; font-family:'Inter',sans-serif; font-size:13px;">
+        </div>
+        <div style="margin-bottom:22px;">
+          <label style="display:block; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--tuscan); margin-bottom:8px;">Your Email</label>
+          <input type="email" id="auditEmail" required style="width:100%; background:var(--breakup); border:1px solid rgba(233,215,201,0.25); color:var(--cream); padding:12px 14px; font-family:'Inter',sans-serif; font-size:13px;">
+        </div>
+        <div style="margin-bottom:22px;">
+          <label style="display:block; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--tuscan); margin-bottom:8px;">What's the biggest bottleneck right now — transactions, CRM, listings, or social?</label>
+          <input type="text" id="auditBottleneck" required style="width:100%; background:var(--breakup); border:1px solid rgba(233,215,201,0.25); color:var(--cream); padding:12px 14px; font-family:'Inter',sans-serif; font-size:13px;">
+        </div>
+        <div style="margin-bottom:30px;">
+          <label style="display:block; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--tuscan); margin-bottom:8px;">What's currently keeping track of it (spreadsheet, memory, nothing)?</label>
+          <input type="text" id="auditTool" required style="width:100%; background:var(--breakup); border:1px solid rgba(233,215,201,0.25); color:var(--cream); padding:12px 14px; font-family:'Inter',sans-serif; font-size:13px;">
+        </div>
+        <button type="submit" class="mjpr-btn" style="border:1px solid var(--tuscan); cursor:pointer;">Send My Answers →</button>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -1130,7 +1240,7 @@
 </footer>
 
 <script>
-  var revealSelector = '.mjspec-card, .mjproj-card, .mjws-card, .mjtool-card, .mjrev-card, .mjtease-card, .mjpr-step, .mjdet-cell, .mjabout-photo, .mjabout-bio, .mjabout-help, .mjabout-stat';
+  var revealSelector = '.mjspec-card, .mjproj-card, .mjws-card, .mjtool-card, .mjrev-card, .mjtease-card, .mjpr-step, .mjdet-cell, .mjabout-photo, .mjabout-bio, .mjabout-help, .mjabout-stat, .mjexp-row, .mjcase-cell';
 
   function showPage(id){
     document.querySelectorAll('.mjpage').forEach(function(p){ p.classList.remove('active'); });
@@ -1149,6 +1259,25 @@
     document.getElementById('navLinks').classList.toggle('open');
   }
   document.querySelector('.mjnav-link[data-page="home"]').classList.add('active');
+
+  var auditForm = document.getElementById('mjAuditForm');
+  if(auditForm){
+    auditForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var name = document.getElementById('auditName').value;
+      var email = document.getElementById('auditEmail').value;
+      var bottleneck = document.getElementById('auditBottleneck').value;
+      var tool = document.getElementById('auditTool').value;
+      var subject = encodeURIComponent('Free Ops Audit Request — ' + name);
+      var body = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n' +
+        'Biggest bottleneck: ' + bottleneck + '\n' +
+        'Currently tracked with: ' + tool
+      );
+      window.location.href = 'mailto:Maryjanepagalan14@gmail.com?subject=' + subject + '&body=' + body;
+    });
+  }
 
   var revealTargets = document.querySelectorAll(revealSelector);
   if('IntersectionObserver' in window){

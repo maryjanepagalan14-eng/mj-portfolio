@@ -158,6 +158,15 @@
   @media(max-width:760px){.mjpr-steps{grid-template-columns:1fr 1fr;}}
   @media(max-width:480px){.mjpr-steps{grid-template-columns:1fr;}}
 
+  /* ===== TOOLS STRIP (home) ===== */
+  .mjtoolstrip-wrap{background:var(--breakup); padding:44px 40px; text-align:center; border-top:1px solid rgba(233,215,201,0.1); border-bottom:1px solid rgba(233,215,201,0.1);}
+  .mjtoolstrip-label{font-size:10px; font-weight:600; letter-spacing:0.24em; text-transform:uppercase; color:var(--tuscan); margin-bottom:24px;}
+  .mjtoolstrip-row{display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px; max-width:900px; margin:0 auto;}
+  .mjtoolstrip-icon{width:44px; height:44px; border-radius:10px; background:var(--cream); display:flex; align-items:center; justify-content:center; padding:7px; transition:transform 0.3s ease;}
+  .mjtoolstrip-icon:hover{transform:translateY(-3px);}
+  .mjtoolstrip-icon img{width:100%; height:100%; object-fit:contain;}
+  .mjtoolstrip-more{color:var(--portabella); font-size:11px; font-weight:600; letter-spacing:0.06em; padding:0 4px;}
+
   /* ===== SKILL PAGE HERO ===== */
   .mjhero{padding:90px 40px 80px; position:relative;}
   .mjhero-title{font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(34px,5.4vw,58px); color:var(--cream); line-height:1.05; margin-bottom:20px; max-width:640px;}
@@ -219,7 +228,7 @@
   /* ===== TOOLS PAGE ===== */
   .mjtool-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:16px;}
   .mjtool-card{background:var(--breakup); border:1px solid rgba(233,215,201,0.15); padding:20px 14px; display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center;}
-  .mjtool-frame{width:60px; height:60px; border:1px dashed rgba(233,215,201,0.35); background:var(--nuln); display:flex; align-items:center; justify-content:center; overflow:hidden;}
+  .mjtool-frame{width:60px; height:60px; border:1px solid rgba(233,215,201,0.2); background:var(--cream); border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:8px;}
   .mjtool-frame img{width:100%; height:100%; object-fit:contain;}
   .mjtool-frame .placeholder-x{font-family:'Playfair Display',serif; font-style:italic; font-size:8.5px; color:var(--portabella); opacity:0.6;}
   .mjtool-name{font-size:11.5px; font-weight:500; color:var(--cream);}
@@ -419,6 +428,31 @@
           <button class="mjspec-link" onclick="showPage('social')">View Work →</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="mjtoolstrip-wrap">
+    <div class="mjtoolstrip-label">Tools I Work In</div>
+    <div class="mjtoolstrip-row">
+      <div class="mjtoolstrip-icon"><img src="logo-wiseagent.png" alt="Wise Agent"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-dotloop.png" alt="Dotloop"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-docusign.png" alt="DocuSign"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-zipform.png" alt="ZipForm"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-hivemls.png" alt="HiveMLS"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-hubspot.png" alt="HubSpot"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-salesforce.png" alt="Salesforce"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-zendesk.png" alt="Zendesk"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-microsoft365.png" alt="Microsoft 365"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-googleworkspace.png" alt="Google Workspace"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-clickup.png" alt="ClickUp"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-asana.png" alt="Asana"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-trello.png" alt="Trello"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-canva.png" alt="Canva"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-descript.png" alt="Descript"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-capcut.png" alt="CapCut"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-instagram.png" alt="Instagram"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-facebook.png" alt="Facebook"></div>
+      <div class="mjtoolstrip-icon"><img src="logo-linkedin.png" alt="LinkedIn"></div>
     </div>
   </div>
 
@@ -826,11 +860,11 @@
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Real Estate &amp; Listings</span><div class="sec-line"></div></div>
       <div class="mjtool-grid">
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Wise Agent</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Dotloop</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">DocuSign</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">ZipForm</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">HiveMLS</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-wiseagent.png" alt="Wise Agent logo"></div><div class="mjtool-name">Wise Agent</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-dotloop.png" alt="Dotloop logo"></div><div class="mjtool-name">Dotloop</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-docusign.png" alt="DocuSign logo"></div><div class="mjtool-name">DocuSign</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-zipform.png" alt="ZipForm logo"></div><div class="mjtool-name">ZipForm</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-hivemls.png" alt="HiveMLS logo"></div><div class="mjtool-name">HiveMLS</div></div>
       </div>
     </div>
   </div>
@@ -839,11 +873,11 @@
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">CRM &amp; Systems</span><div class="sec-line"></div></div>
       <div class="mjtool-grid">
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">HubSpot</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Salesforce</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Zendesk</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Microsoft 365</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Google Workspace</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-hubspot.png" alt="HubSpot logo"></div><div class="mjtool-name">HubSpot</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-salesforce.png" alt="Salesforce logo"></div><div class="mjtool-name">Salesforce</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-zendesk.png" alt="Zendesk logo"></div><div class="mjtool-name">Zendesk</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-microsoft365.png" alt="Microsoft 365 logo"></div><div class="mjtool-name">Microsoft 365</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-googleworkspace.png" alt="Google Workspace logo"></div><div class="mjtool-name">Google Workspace</div></div>
       </div>
     </div>
   </div>
@@ -852,9 +886,9 @@
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Project &amp; Operations</span><div class="sec-line"></div></div>
       <div class="mjtool-grid">
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">ClickUp</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Asana</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Trello</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-clickup.png" alt="ClickUp logo"></div><div class="mjtool-name">ClickUp</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-asana.png" alt="Asana logo"></div><div class="mjtool-name">Asana</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-trello.png" alt="Trello logo"></div><div class="mjtool-name">Trello</div></div>
       </div>
     </div>
   </div>
@@ -863,12 +897,14 @@
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Design &amp; Social</span><div class="sec-line"></div></div>
       <div class="mjtool-grid">
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Canva</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Instagram</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">Facebook</div></div>
-        <div class="mjtool-card"><div class="mjtool-frame"><div class="placeholder-x">Add Logo</div></div><div class="mjtool-name">LinkedIn</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-canva.png" alt="Canva logo"></div><div class="mjtool-name">Canva</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-descript.png" alt="Descript logo"></div><div class="mjtool-name">Descript</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-capcut.png" alt="CapCut logo"></div><div class="mjtool-name">CapCut</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-instagram.png" alt="Instagram logo"></div><div class="mjtool-name">Instagram</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-facebook.png" alt="Facebook logo"></div><div class="mjtool-name">Facebook</div></div>
+        <div class="mjtool-card"><div class="mjtool-frame"><img src="logo-linkedin.png" alt="LinkedIn logo"></div><div class="mjtool-name">LinkedIn</div></div>
       </div>
-      <p class="mjws-note">Each frame is ready for a tool logo — swap the placeholder box for a real icon as you add new tools to your stack.</p>
+      <p class="mjws-note">Every logo above is a tool I've worked in hands-on, not just heard of.</p>
     </div>
   </div>
 

@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MJ — Portfolio</title>
+<title>MJ Pagalan | Virtual Assistant — Transaction Coordination, CRM &amp; Listings</title>
+<meta name="description" content="Mary Jane (MJ) Pagalan — Virtual Assistant specializing in real estate transaction coordination, CRM &amp; database management, listing coordination, and social media management for real estate agents.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23130F0D'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-weight='700' font-size='52' fill='%23E9D7C9' text-anchor='middle'%3EMJ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -128,8 +130,9 @@
   /* ===== MY WORKS (home preview cards) ===== */
   .mjproj-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
   .mjproj-card{background:var(--nuln); border:1px solid rgba(233,215,201,0.18);}
-  .mjproj-thumb{position:relative; aspect-ratio:4/3; background:var(--breakup); display:flex; align-items:center; justify-content:center;}
-  .mjproj-num{position:absolute; top:14px; left:14px; background:var(--tuscan); color:var(--cream); font-size:11px; font-weight:700; padding:5px 10px;}
+  .mjproj-thumb{position:relative; aspect-ratio:4/3; background:var(--breakup); display:flex; align-items:center; justify-content:center; overflow:hidden;}
+  .mjproj-thumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top;}
+  .mjproj-num{position:absolute; top:14px; left:14px; z-index:2; background:var(--tuscan); color:var(--cream); font-size:11px; font-weight:700; padding:5px 10px;}
   .mjproj-thumb .placeholder-x{font-family:'Playfair Display',serif; font-style:italic; font-size:13px; color:var(--portabella); opacity:0.5;}
   .mjproj-body{padding:22px 22px 26px;}
   .mjproj-body h3{font-family:'Playfair Display',serif; font-weight:600; font-size:18px; color:var(--cream); margin-bottom:8px;}
@@ -184,10 +187,15 @@
   .mjws-wrap{background:var(--nuln); padding:20px 40px 90px;}
   .mjws-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(233,215,201,0.15); border:1px solid rgba(233,215,201,0.15);}
   .mjws-card{background:var(--breakup); aspect-ratio:4/3; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; padding:20px;}
-  .mjws-card .tag{position:absolute; top:16px; left:16px; font-size:9.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--cream); border:1px solid rgba(233,215,201,0.4); padding:5px 10px;}
+  .mjws-card .tag{position:absolute; top:16px; left:16px; z-index:2; font-size:9.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--cream); border:1px solid rgba(233,215,201,0.4); padding:5px 10px; background:rgba(19,15,13,0.35);}
   .mjws-card .placeholder-x{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-style:italic; font-size:13px; color:var(--portabella); opacity:0.5;}
-  .mjws-card .cap{position:relative; font-size:12.5px; color:var(--cream); font-weight:500;}
-  .mjws-card .sub{position:relative; font-size:10.5px; color:var(--portabella); margin-top:3px;}
+  .mjws-card .ss{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; z-index:0;}
+  .mjws-card .ss-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(19,15,13,0) 42%, rgba(19,15,13,0.94) 100%); z-index:1;}
+  .mjws-card.has-ss{padding:18px;}
+  .mjws-card.linked{cursor:pointer;}
+  .mjws-card .cap{position:relative; z-index:2; font-size:12.5px; color:var(--cream); font-weight:500;}
+  .mjws-card .sub{position:relative; z-index:2; font-size:10.5px; color:var(--portabella); margin-top:3px;}
+  a.mjws-card-link{display:block; color:inherit;}
   .mjws-note{margin-top:26px; font-size:11.5px; color:var(--portabella); font-style:italic; font-family:'Playfair Display',serif;}
   @media(max-width:760px){.mjws-grid{grid-template-columns:1fr 1fr;}}
   @media(max-width:480px){.mjws-grid{grid-template-columns:1fr;}}
@@ -293,7 +301,7 @@
       <button class="mjnav-link" data-page="portfolio" onclick="showPage('portfolio')">My Works</button>
       <button class="mjnav-link" data-page="reviews" onclick="showPage('reviews')">Reviews</button>
       <button class="mjnav-link" data-page="contact" onclick="showPage('contact')">Contact</button>
-      <a class="mjnav-cta" href="#" onclick="return false;">Let's Connect</a>
+      <a class="mjnav-cta" href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
     </div>
   </div>
 </nav>
@@ -405,7 +413,7 @@
         <div class="mjtease-card">
           <p class="mjtease-quote">"MJ is on top of things — she really has been amazing. I'm very happy with the job she's been doing."</p>
           <div class="mjtease-name">Devon</div>
-          <div class="mjtease-role">DBRE</div>
+          <div class="mjtease-role">VIP Connection</div>
         </div>
         <div class="mjtease-card">
           <p class="mjtease-quote">"She's doing a great job with transaction coordination. She caught on very quickly, and I am very, very pleased."</p>
@@ -434,30 +442,30 @@
       <div class="sec-head"><span class="sec-num">04</span><h2>My Works</h2><div class="sec-line"></div></div>
       <div class="mjproj-grid">
         <div class="mjproj-card">
-          <div class="mjproj-thumb"><div class="mjproj-num">01</div><div class="placeholder-x">Add screenshot</div></div>
+          <div class="mjproj-thumb"><div class="mjproj-num">01</div><img src="images/contract-to-close-tracker.png" alt="Contract-to-Close Tracker ClickUp board"></div>
           <div class="mjproj-body">
             <span class="mjproj-tag">Coordination</span>
             <h3>Contract-to-Close Tracker</h3>
             <p>A milestone system that keeps every transaction on schedule from contract to closing.</p>
-            <button class="mjproj-link" onclick="showPage('portfolio')">View →</button>
+            <button class="mjproj-link" onclick="showPage('coordination')">View →</button>
           </div>
         </div>
         <div class="mjproj-card">
-          <div class="mjproj-thumb"><div class="mjproj-num">02</div><div class="placeholder-x">Add screenshot</div></div>
+          <div class="mjproj-thumb"><div class="mjproj-num">02</div><img src="images/database-audit-summary.png" alt="CRM Database Audit Report summary"></div>
           <div class="mjproj-body">
             <span class="mjproj-tag">CRM</span>
             <h3>Database Audit Report</h3>
             <p>A before-and-after look at a full CRM clean-up — duplicates resolved, records verified.</p>
-            <button class="mjproj-link" onclick="showPage('portfolio')">View →</button>
+            <button class="mjproj-link" onclick="showPage('crm')">View →</button>
           </div>
         </div>
         <div class="mjproj-card">
-          <div class="mjproj-thumb"><div class="mjproj-num">03</div><div class="placeholder-x">Add screenshot</div></div>
+          <div class="mjproj-thumb"><div class="mjproj-num">03</div><img src="images/re-flyer-suite.png" alt="Real estate flyer and social post suite"></div>
           <div class="mjproj-body">
             <span class="mjproj-tag">Design</span>
-            <h3>Graphic Design Set</h3>
-            <p>Flyers, reels, and branded graphics built for consistent, on-platform posting.</p>
-            <button class="mjproj-link" onclick="showPage('portfolio')">View →</button>
+            <h3>Real Estate Flyer Suite</h3>
+            <p>Just Listed, Open House, and closing posts — flyers built for consistent, on-platform posting.</p>
+            <button class="mjproj-link" onclick="showPage('social')">View →</button>
           </div>
         </div>
       </div>
@@ -470,7 +478,7 @@
       <div class="mjpr-cta">
         <div class="mjpr-cta-eyebrow">Let's Work Together</div>
         <h2>Ready to hand off the operational details and get back to what only you can do?</h2>
-        <a href="#" class="mjpr-btn" onclick="return false;">Let's Connect</a>
+        <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener" class="mjpr-btn">Let's Connect</a>
       </div>
     </div>
   </div>
@@ -518,16 +526,31 @@
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
       <div class="mjws-grid">
-        <div class="mjws-card"><div class="tag">Transactions</div><div class="placeholder-x">Add screenshot</div><div class="cap">Contract-to-Close Tracker</div><div class="sub">Transaction milestone system</div></div>
-        <div class="mjws-card"><div class="tag">Transactions</div><div class="placeholder-x">Add screenshot</div><div class="cap">Compliance Checklist</div><div class="sub">Disclosure &amp; document tracking</div></div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/contract-to-close-tracker.png" alt="Contract-to-Close Tracker ClickUp board — 412 Ashewood Ln">
+          <div class="ss-overlay"></div>
+          <div class="tag">Transactions</div>
+          <div class="cap">Contract-to-Close Tracker</div>
+          <div class="sub">Transaction milestone system — sample deal</div>
+        </div>
+        <a class="mjws-card-link" href="disclosure-document-checklist.html" target="_blank" rel="noopener">
+          <div class="mjws-card linked"><div class="tag">Transactions</div><div class="placeholder-x">View Live Sample →</div><div class="cap">Disclosure &amp; Document Checklist</div><div class="sub">Compliance tracking, sent → signed</div></div>
+        </a>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/final-walkthrough-checklist.png" alt="Final Walkthrough Checklist ClickUp board — 412 Ashewood Ln">
+          <div class="ss-overlay"></div>
+          <div class="tag">Transactions</div>
+          <div class="cap">Final Walkthrough Checklist</div>
+          <div class="sub">Pre-closing readiness tracker</div>
+        </div>
       </div>
-      <p class="mjws-note">Swap each card's background for a real screenshot or case-study thumbnail.</p>
+      <p class="mjws-note">Sample case study built on a fictional property (412 Ashewood Ln, Charlotte NC) to demonstrate workflow — no real client data shown.</p>
     </div>
   </div>
 
   <div class="mjstrip">
     <p>Need someone to run point from contract to close?</p>
-    <a href="#" onclick="return false;">Let's Connect</a>
+    <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
   </div>
 </section>
 
@@ -573,15 +596,35 @@
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
       <div class="mjws-grid">
-        <div class="mjws-card"><div class="tag">CRM</div><div class="placeholder-x">Add screenshot</div><div class="cap">Database Audit Report</div><div class="sub">CRM clean-up before / after</div></div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/database-audit-summary.png" alt="CRM database audit report summary — messy data audited and reconciled">
+          <div class="ss-overlay"></div>
+          <div class="tag">CRM</div>
+          <div class="cap">Database Audit Report</div>
+          <div class="sub">Unverified data → clean, compliant system</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/crm-before.png" alt="HubSpot CRM before clean-up — unassigned, duplicate contacts">
+          <div class="ss-overlay"></div>
+          <div class="tag">CRM</div>
+          <div class="cap">Before: Unassigned &amp; Incomplete</div>
+          <div class="sub">HubSpot contacts — no owner, missing data</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/crm-after.png" alt="HubSpot CRM after clean-up — owned, deduplicated contacts">
+          <div class="ss-overlay"></div>
+          <div class="tag">CRM</div>
+          <div class="cap">After: Owned &amp; Organized</div>
+          <div class="sub">HubSpot contacts — assigned, deduplicated</div>
+        </div>
       </div>
-      <p class="mjws-note">Swap each card's background for a real screenshot or case-study thumbnail.</p>
+      <p class="mjws-note">Sample audit built on a free HubSpot CRM account to demonstrate the clean-up workflow — no real client data shown.</p>
     </div>
   </div>
 
   <div class="mjstrip">
     <p>Ready for a CRM you can actually trust?</p>
-    <a href="#" onclick="return false;">Let's Connect</a>
+    <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
   </div>
 </section>
 
@@ -626,15 +669,28 @@
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
       <div class="mjws-grid">
-        <div class="mjws-card"><div class="tag">Listings</div><div class="placeholder-x">Add screenshot</div><div class="cap">MLS Listing Checklist</div><div class="sub">Listing prep &amp; launch tracker</div></div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/mls-listing-prep-checklist.png" alt="MLS Listing Prep Checklist ClickUp board — 128 Willow Creek Dr">
+          <div class="ss-overlay"></div>
+          <div class="tag">Listings</div>
+          <div class="cap">MLS Listing Prep Checklist</div>
+          <div class="sub">Listing prep &amp; launch tracker — sample listing</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/open-house-prep-checklist.png" alt="Open House Prep Checklist ClickUp board — 128 Willow Creek Dr">
+          <div class="ss-overlay"></div>
+          <div class="tag">Listings</div>
+          <div class="cap">Open House Prep Checklist</div>
+          <div class="sub">Signage, promotion &amp; lead capture tracker</div>
+        </div>
       </div>
-      <p class="mjws-note">Swap each card's background for a real screenshot or case-study thumbnail.</p>
+      <p class="mjws-note">Sample case study built on a fictional listing (128 Willow Creek Dr, Raleigh NC) to demonstrate workflow — no real client data shown.</p>
     </div>
   </div>
 
   <div class="mjstrip">
     <p>Want listings that are correct the first time?</p>
-    <a href="#" onclick="return false;">Let's Connect</a>
+    <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
   </div>
 </section>
 
@@ -679,17 +735,67 @@
   <div class="mjws-wrap">
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Work Samples</span><div class="sec-line"></div></div>
+      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Real Estate Marketing</span><div class="sec-line"></div></div>
       <div class="mjws-grid">
-        <div class="mjws-card"><div class="tag">Design</div><div class="placeholder-x">Add screenshot</div><div class="cap">Graphic Design Set</div><div class="sub">Flyers, reels &amp; branded graphics</div></div>
-        <div class="mjws-card"><div class="tag">Social</div><div class="placeholder-x">Add screenshot</div><div class="cap">Content Calendar</div><div class="sub">Monthly multi-platform plan</div></div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/re-buyer-guide.png" alt="Buyer's Guide booklet — VIP Realty branded design">
+          <div class="ss-overlay"></div>
+          <div class="tag">Real Estate</div>
+          <div class="cap">Buyer's Guide Booklet</div>
+          <div class="sub">Branded client handout — VIP Realty</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/re-listing-sheet.png" alt="Listing marketing sheet — VIP Estate branded property flyer">
+          <div class="ss-overlay"></div>
+          <div class="tag">Real Estate</div>
+          <div class="cap">Listing Marketing Sheet</div>
+          <div class="sub">Single-property brochure — VIP Estate</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/re-flyer-suite.png" alt="Just Listed, Open House, and property marketing flyer suite — VIP Realty">
+          <div class="ss-overlay"></div>
+          <div class="tag">Real Estate</div>
+          <div class="cap">Flyer &amp; Post Suite</div>
+          <div class="sub">Just Listed, Open House, Just Closed &amp; community posts</div>
+        </div>
       </div>
-      <p class="mjws-note">Swap each card's background for a real screenshot or case-study thumbnail.</p>
+      <p class="mjws-note">Sample marketing set built for a fictional agent and brokerage (VIP Realty / Cherry Qill) to demonstrate design range — no real client data shown.</p>
+    </div>
+  </div>
+
+  <div class="mjws-wrap" style="padding-top:0;">
+    <div class="max">
+      <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Multi-Industry Content Design</span><div class="sec-line"></div></div>
+      <div class="mjws-grid">
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/social-cafe.png" alt="Instagram content grid for a coffee shop brand">
+          <div class="ss-overlay"></div>
+          <div class="tag">Design</div>
+          <div class="cap">Café Content Grid</div>
+          <div class="sub">Instagram post set — food &amp; beverage brand</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/social-skincare.png" alt="Instagram content grid for a skincare brand">
+          <div class="ss-overlay"></div>
+          <div class="tag">Design</div>
+          <div class="cap">Skincare Content Grid</div>
+          <div class="sub">Instagram post set — beauty brand</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/social-petcare.png" alt="Instagram content grid for a pet care brand">
+          <div class="ss-overlay"></div>
+          <div class="tag">Design</div>
+          <div class="cap">Pet Care Content Grid</div>
+          <div class="sub">Instagram post set — animal welfare brand</div>
+        </div>
+      </div>
+      <p class="mjws-note">Built to show range across industries — the same content system adapts to any brand voice and palette.</p>
     </div>
   </div>
 
   <div class="mjstrip">
     <p>Ready for content that never goes quiet?</p>
-    <a href="#" onclick="return false;">Let's Connect</a>
+    <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
   </div>
 </section>
 
@@ -752,7 +858,7 @@
 
   <div class="mjstrip">
     <p>Want to know if I already use your systems?</p>
-    <a href="#" onclick="return false;">Let's Connect</a>
+    <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
   </div>
 </section>
 
@@ -767,9 +873,44 @@
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Coordination &amp; CRM</span><div class="sec-line"></div></div>
       <div class="mjws-grid">
-        <div class="mjws-card"><div class="tag">Transactions</div><div class="placeholder-x">Add screenshot</div><div class="cap">Contract-to-Close Tracker</div><div class="sub">Transaction milestone system</div></div>
-        <div class="mjws-card"><div class="tag">Transactions</div><div class="placeholder-x">Add screenshot</div><div class="cap">Compliance Checklist</div><div class="sub">Disclosure &amp; document tracking</div></div>
-        <div class="mjws-card"><div class="tag">CRM</div><div class="placeholder-x">Add screenshot</div><div class="cap">Database Audit Report</div><div class="sub">CRM clean-up before / after</div></div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/contract-to-close-tracker.png" alt="Contract-to-Close Tracker ClickUp board">
+          <div class="ss-overlay"></div>
+          <div class="tag">Transactions</div>
+          <div class="cap">Contract-to-Close Tracker</div>
+          <div class="sub">Transaction milestone system</div>
+        </div>
+        <a class="mjws-card-link" href="disclosure-document-checklist.html" target="_blank" rel="noopener">
+          <div class="mjws-card linked"><div class="tag">Transactions</div><div class="placeholder-x">View Live Sample →</div><div class="cap">Disclosure &amp; Document Checklist</div><div class="sub">Compliance tracking, sent → signed</div></div>
+        </a>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/database-audit-summary.png" alt="CRM database audit report summary">
+          <div class="ss-overlay"></div>
+          <div class="tag">CRM</div>
+          <div class="cap">Database Audit Report</div>
+          <div class="sub">CRM clean-up before / after</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/crm-before.png" alt="HubSpot CRM before clean-up">
+          <div class="ss-overlay"></div>
+          <div class="tag">CRM</div>
+          <div class="cap">Before: Unassigned &amp; Incomplete</div>
+          <div class="sub">HubSpot contacts — no owner, missing data</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/crm-after.png" alt="HubSpot CRM after clean-up">
+          <div class="ss-overlay"></div>
+          <div class="tag">CRM</div>
+          <div class="cap">After: Owned &amp; Organized</div>
+          <div class="sub">HubSpot contacts — assigned, deduplicated</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/final-walkthrough-checklist.png" alt="Final Walkthrough Checklist ClickUp board">
+          <div class="ss-overlay"></div>
+          <div class="tag">Transactions</div>
+          <div class="cap">Final Walkthrough Checklist</div>
+          <div class="sub">Pre-closing readiness tracker</div>
+        </div>
       </div>
     </div>
   </div>
@@ -778,9 +919,41 @@
     <div class="max">
       <div class="sec-head" style="margin-bottom:30px;"><span class="sec-num">Listings &amp; Social</span><div class="sec-line"></div></div>
       <div class="mjws-grid">
-        <div class="mjws-card"><div class="tag">Listings</div><div class="placeholder-x">Add screenshot</div><div class="cap">MLS Listing Checklist</div><div class="sub">Listing prep &amp; launch tracker</div></div>
-        <div class="mjws-card"><div class="tag">Design</div><div class="placeholder-x">Add screenshot</div><div class="cap">Graphic Design Set</div><div class="sub">Flyers, reels &amp; branded graphics</div></div>
-        <div class="mjws-card"><div class="tag">Social</div><div class="placeholder-x">Add screenshot</div><div class="cap">Content Calendar</div><div class="sub">Monthly multi-platform plan</div></div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/mls-listing-prep-checklist.png" alt="MLS Listing Prep Checklist ClickUp board">
+          <div class="ss-overlay"></div>
+          <div class="tag">Listings</div>
+          <div class="cap">MLS Listing Prep Checklist</div>
+          <div class="sub">Listing prep &amp; launch tracker</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/open-house-prep-checklist.png" alt="Open House Prep Checklist ClickUp board">
+          <div class="ss-overlay"></div>
+          <div class="tag">Listings</div>
+          <div class="cap">Open House Prep Checklist</div>
+          <div class="sub">Signage, promotion &amp; lead capture tracker</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/re-buyer-guide.png" alt="Buyer's Guide booklet — VIP Realty">
+          <div class="ss-overlay"></div>
+          <div class="tag">Design</div>
+          <div class="cap">Buyer's Guide Booklet</div>
+          <div class="sub">Branded client handout</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/re-flyer-suite.png" alt="Real estate flyer and post suite">
+          <div class="ss-overlay"></div>
+          <div class="tag">Design</div>
+          <div class="cap">Flyer &amp; Post Suite</div>
+          <div class="sub">Just Listed, Open House &amp; closing posts</div>
+        </div>
+        <div class="mjws-card has-ss">
+          <img class="ss" src="images/social-cafe.png" alt="Café Instagram content grid">
+          <div class="ss-overlay"></div>
+          <div class="tag">Social</div>
+          <div class="cap">Multi-Industry Content Grid</div>
+          <div class="sub">Café, skincare &amp; pet care brands</div>
+        </div>
       </div>
       <p class="mjws-note">Swap each card's background for a real screenshot, PDF export, or case-study thumbnail as you collect samples from real client work.</p>
     </div>
@@ -788,7 +961,7 @@
 
   <div class="mjstrip">
     <p>Like what you see? Let's talk about your project.</p>
-    <a href="#" onclick="return false;">Let's Connect</a>
+    <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
   </div>
 </section>
 
@@ -817,7 +990,7 @@
           </div>
           <div class="mjrev-foot">
             <div class="mjrev-name">Devon</div>
-            <div class="mjrev-role">DBRE</div>
+            <div class="mjrev-role">VIP Connection</div>
             <div class="mjrev-tags"><span class="mjrev-tag">Transaction Coordination</span><span class="mjrev-tag">CRM</span></div>
           </div>
         </div>
@@ -847,7 +1020,7 @@
 
   <div class="mjstrip">
     <p>Want to be the next review on this page?</p>
-    <a href="#" onclick="return false;">Let's Connect</a>
+    <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
   </div>
 </section>
 
@@ -882,7 +1055,7 @@
   </div>
   <div class="mjstrip">
     <p>Prefer to talk specifics first?</p>
-    <a href="#" onclick="return false;">Let's Connect</a>
+    <a href="https://calendly.com/maryjanepagalan14/30min" target="_blank" rel="noopener">Let's Connect</a>
   </div>
 </section>
 
